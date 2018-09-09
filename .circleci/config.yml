@@ -13,12 +13,24 @@ jobs:
 
     steps:
       - checkout
-      - run: echo "Finished building"
+  
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST "- scp -r * $SSH_USER@$SSH_HOST:/slinkonline.com/"
 
-deployment:
-  production:
-    branch: master
-    commands:
-      - scp -r * aaronbrowder@gmail.com:/slinkonline.com/
-      
-        
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
