@@ -22,7 +22,8 @@ jobs:
           name: Test connection to host
           command: |
             ssh -p 18765 $SSH_HOST
-      name: Test connection to user
+      - run:
+          name: Test connection to user
           command: |
             ssh -p 18765 $SSH_USER@$SSH_HOST
       - run:
