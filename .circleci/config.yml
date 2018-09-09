@@ -19,6 +19,10 @@ jobs:
       enabled: true
     steps:
       - run:
+          name: Test connection to GitHub
+          command: |
+            ssh git@github.com
+      - run:
           name: Test connection to host
           command: |
             ssh -p 18765 $SSH_HOST
