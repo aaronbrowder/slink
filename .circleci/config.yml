@@ -24,15 +24,15 @@ jobs:
       - run:
           name: Test connection to host
           command: |
-            ssh -vvv -p 18765 $SSH_HOST
+            ssh -v -p 18765 $SSH_HOST
       - run:
           name: Test connection to user
           command: |
-            ssh -vvv -p 18765 $SSH_USER@$SSH_HOST
+            ssh -v -p 18765 $SSH_USER@$SSH_HOST
       - run:
           name: Deploy usin scp
           command: |
-            scp -P 18765 -r ./ $SSH_USER@$SSH_HOST:/slinkonline.com/
+            scp -P 18765 -r ..\ $SSH_USER@$SSH_HOST:public_html
 
 workflows:
   version: 2
