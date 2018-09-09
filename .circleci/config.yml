@@ -22,11 +22,7 @@ jobs:
           fingerprints:
             - "e2:c9:b5:d7:23:2d:0a:78:62:b7:68:8f:5a:87:86:a5"
       - run:
-          name: Test connection to user
-          command: |
-            ssh -v -p 18765 $SSH_USER@$SSH_HOST
-      - run:
-          name: Deploy usin scp
+          name: Deploy using scp
           command: |
             scp -P 18765 -r ..\ $SSH_USER@$SSH_HOST:public_html
 
