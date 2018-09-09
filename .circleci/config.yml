@@ -13,7 +13,12 @@ jobs:
 
     steps:
       - checkout
-      - run: echo "Hello world!"
+      - run: echo "Finished building"
 
+deployment:
+  production:
+    branch: master
+    commands:
+      - scp -r * aaronbrowder@gmail.com:/slinkonline.com/
       
         
