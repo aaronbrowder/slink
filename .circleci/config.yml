@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Deploy using scp
           command: |
-            scp -v -P 18765 -r ..\ $SSH_USER@$SSH_HOST:public_html
+            scp -P 18765 -r .\ $SSH_USER@$SSH_HOST:public_html
 
 workflows:
   version: 2
