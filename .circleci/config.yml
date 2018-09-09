@@ -35,3 +35,13 @@ jobs:
         
       # run tests!
       - run: phpunit
+      
+test:  
+  override:
+    - "true"
+    
+deployment:
+  production:
+    branch: master
+    commands:
+      - scp -r * aaronbrowder@gmail.com:/slinkonline.com/
