@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp -P 18765 -r * $SSH_USER@$SSH_HOST:/slinkonline.com/
+            scp -P 18765 -r ~/local_dir $SSH_USER@$SSH_HOST:/slinkonline.com/
 
 workflows:
   version: 2
