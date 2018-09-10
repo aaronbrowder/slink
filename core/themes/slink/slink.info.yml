@@ -1,0 +1,13 @@
+name: Slink
+type: theme
+base theme: classy
+description: 'A custom theme for Slink.'
+package: custom
+core: '8.x'
+
+regions:
+      headline: headline
+      header: header
+      content: content
+      sidebar: sidebar
+      footer: Footer
