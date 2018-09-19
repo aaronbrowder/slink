@@ -10,4 +10,4 @@ regions:
       header: header
       content: content
       sidebar: sidebar
-      footer: Footer
+      footer: footer
