@@ -1,5 +1,5 @@
 # Schema for the configuration files of the Bartik theme.
 
-bartik.settings:
+slink.settings:
   type: theme_settings
-  label: 'Bartik settings'
+  label: 'Slink settings'
