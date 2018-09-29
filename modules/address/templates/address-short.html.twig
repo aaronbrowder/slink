@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Default template for the 'short' address formatter.
+ *
+ * Available variables:
+ *   - locality: The locality subdivision.
+ *     - locality.code: Locality code.
+ *     - locality.name: Locality name.
+ *   - administrative_area: The administrative area subdivision.
+ *     - administrative_area.code: Administrative area code.
+ *     - administrative_area.name: Administrative area name.
+ *   - country: The country.
+ *     - country.code: Country code.
+ *     - country.name: Country name.
+ *
+ * if a subdivision (dependent_locality, locality, administrative_area) was
+ * entered, the array will always have a code. If it's a predefined subdivision,
+ * it will also have a name. The code is always prefered.
+ *
+ * @ingroup themeable
+ */
+#}
+<p class="address" translate="no">
+  {% if locality %}
+    {{ locality }},
+  {% endif %}
+  {% if administrative_area %}
+    {{ administrative_area.name }},
+  {% endif %}
+  {{ country.name }}
+</p>

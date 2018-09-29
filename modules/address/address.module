@@ -28,7 +28,7 @@ function address_form_field_config_edit_form_alter(&$form, FormStateInterface $f
  */
 function address_theme() {
   return [
-    'address_plain' => [
+    'address_short' => [
       'variables' => [
         'given_name' => '',
         'additional_name' => '',
