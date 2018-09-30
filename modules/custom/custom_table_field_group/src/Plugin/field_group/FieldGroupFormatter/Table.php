@@ -141,15 +141,12 @@ class Table extends FieldGroupFormatterBase {
 
     $fields = Element::children($element);
     $rows = [];
-    //$header = [];
     foreach ($fields as $key) {
-      //$header[] = render($element[$key]['#title']);
-      $element[$key]['#title'] ='';
       $rows[] = [
-        render($element[$key]),
+        render($element[$key]['#title']),
         render($element[$key])
       ];
-      //$rows['#cells'][] = render($element[$key]);
+      $element[$key]['#title'] = '';
       unset($element[$key]);
     }
     // if ($this->getSetting('fieldtitle') == 1) {
