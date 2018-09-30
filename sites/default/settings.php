@@ -786,11 +786,11 @@ $settings['entity_update_batch_size'] = 50;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 $databases['default']['default'] = array (
-  'database' => 'c9',
-  'username' => 'aaronbrowder',
-  'password' => '',
+  'database' => 'slinkonl_db2',
+  'username' => 'slinkonl_db2',
+  'password' => 'SyAH{zfB+Dx;',
   'prefix' => '',
-  'host' => '127.0.0.1',
+  'host' => 'localhost',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
