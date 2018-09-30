@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\table_field_group\Plugin\field_group\FieldGroupFormatter;
+namespace Drupal\custom_table_field_group\Plugin\field_group\FieldGroupFormatter;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
