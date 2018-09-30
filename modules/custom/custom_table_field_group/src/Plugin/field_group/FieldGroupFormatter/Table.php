@@ -146,7 +146,7 @@ class Table extends FieldGroupFormatterBase {
       //$header[] = render($element[$key]['#title']);
       $element[$key]['#title'] ='';
       $rows[] = [
-        render($element[$key]['#title']),
+        render($element[$key]),
         render($element[$key])
       ];
       //$rows['#cells'][] = render($element[$key]);
