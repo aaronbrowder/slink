@@ -143,8 +143,11 @@ class Table extends FieldGroupFormatterBase {
     $rows = [];
     foreach ($fields as $key) {
       $rows[] = [
-        render($element[$key]['#title']),
-        render($element[$key])
+        'no_striping' => TRUE
+        'data' => [
+          render($element[$key]['#title']),
+          render($element[$key])
+        ]
       ];
       $element[$key]['#title'] = '';
       unset($element[$key]);
