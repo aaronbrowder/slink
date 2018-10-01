@@ -17,7 +17,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   label = @Translation("Student Hosting"),
  *   category = @Translation("Student Hosting"),
  *   default_widget = "student_hosting_widget",
- *   default_formatter = "student_hosting_formatter"
+ *   default_formatter = "student_hosting"
  * )
  */
 class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
@@ -30,7 +30,8 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
       'columns' => [
         'enable_student_hosting' => [
           'type' => 'int',
-          'size' => 'tiny'
+          'size' => 'tiny',
+          'not null' => TRUE
         ],
       ],
     ];
