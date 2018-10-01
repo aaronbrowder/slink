@@ -7,7 +7,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 
-
 /**
  * Plugin implementation of the 'student_hosting' widget.
  *
@@ -19,5 +18,40 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
  *   },
  * )
  */
-class AddressDefaultWidget extends WidgetBase implements ContainerFactoryPluginInterface {
+class StudentHostingWidget extends WidgetBase implements ContainerFactoryPluginInterface {
+  
+  /**
+   * Gets the initial values for the widget.
+   *
+   * @return array
+   *   The initial values, keyed by property.
+   */
+  protected function getInitialValues() {
+    $initial_values = [
+      'enable_student_hosting' => FALSE,
+    ];
+    return $initial_values;
+  }
+  
+  /**
+   * {@inheritdoc}
+   */
+  public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
+    $item = $items[$delta];
+    $value = $item->getEntity()->isNew() ? $this->getInitialValues() : $item->toArray();
+    
+    $element += [
+      '#type' => 'details',
+      '#collapsible' => TRUE,
+      '#open' => TRUE,
+    ];
+    $element['student_hosting'] = [
+      '#type' => 'student_hosting',
+      '#default_value' => $value,
+      '#required' => $this->fieldDefinition->isRequired()
+    ];
+
+    return $element;
+  }
+  
 }
