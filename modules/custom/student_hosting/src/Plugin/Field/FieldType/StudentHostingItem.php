@@ -16,7 +16,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   id = "student_hosting",
  *   label = @Translation("Student Hosting"),
  *   category = @Translation("Student Hosting"),
- *   default_widget = "student_hosting_widget",
+ *   default_widget = "student_hosting",
  *   default_formatter = "student_hosting"
  * )
  */
