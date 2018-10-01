@@ -1,0 +1,6 @@
+name: Student Hosting
+type: module
+description: 'Formats student hosting info for display.'
+core: 8.x
+dependencies:
+  - field
