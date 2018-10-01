@@ -29,7 +29,7 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
     return [
       'columns' => [
         'enable_student_hosting' => [
-          'type' => 'boolean',
+          'type' => 'bit',
         ],
       ],
     ];
