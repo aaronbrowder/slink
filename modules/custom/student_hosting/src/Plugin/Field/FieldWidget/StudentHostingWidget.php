@@ -3,9 +3,6 @@
 namespace Drupal\student_hosting\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\WidgetBase;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Field\FieldDefinitionInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 
 /**
  * Plugin implementation of the 'student_hosting' widget.
@@ -18,7 +15,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
  *   },
  * )
  */
-class StudentHostingWidget extends WidgetBase implements ContainerFactoryPluginInterface {
+class StudentHostingWidget extends WidgetBase {
   
   /**
    * Gets the initial values for the widget.
