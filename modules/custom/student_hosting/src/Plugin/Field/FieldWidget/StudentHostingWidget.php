@@ -34,21 +34,32 @@ class StudentHostingWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $item = $items[$delta];
-    $value = $item->getEntity()->isNew() ? $this->getInitialValues() : $item->toArray();
+    // $item = $items[$delta];
+    // $value = $item->getEntity()->isNew() ? $this->getInitialValues() : $item->toArray();
     
-    $element += [
-      '#type' => 'details',
-      '#collapsible' => TRUE,
-      '#open' => TRUE,
-    ];
-    $element['student_hosting'] = [
-      '#type' => 'student_hosting',
-      '#default_value' => $value,
-      '#required' => $this->fieldDefinition->isRequired()
-    ];
+    // $element += [
+    //   '#type' => 'details',
+    //   '#collapsible' => TRUE,
+    //   '#open' => TRUE,
+    // ];
+    // $element['student_hosting'] = [
+    //   '#type' => 'student_hosting',
+    //   '#default_value' => $value,
+    //   '#required' => $this->fieldDefinition->isRequired()
+    // ];
 
-    return $element;
+    // return $element;
+    $value = isset($items[$delta]->value) ? $items[$delta]->value : '';
+    $element += [
+      '#type' => 'textfield',
+      '#default_value' => $value,
+      '#size' => 7,
+      '#maxlength' => 7,
+      '#element_validate' => [
+        [static::class, 'validate'],
+      ],
+    ];
+    return ['value' => $element];
   }
   
 }
