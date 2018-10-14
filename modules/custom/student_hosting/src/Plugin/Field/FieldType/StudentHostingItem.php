@@ -28,10 +28,24 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
   public static function schema(FieldStorageDefinitionInterface $field_definition) {
     return [
       'columns' => [
-        'enable_student_hosting' => [
+        'enabled' => [
           'type' => 'int',
           'size' => 'tiny',
           'not null' => TRUE
+        ],
+        'cost' => [
+          'type' => 'numeric',
+          'unsigned' => TRUE, 
+          'precision' => 6,
+          'scale' => 2,
+          'not null' => FALSE
+        ],
+        'currency' => [
+          'type' => 'varchar',
+          'length' => 255
+        ],
+        'description' => [
+          'type' => 'text'
         ],
       ],
     ];
@@ -42,9 +56,12 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
     $properties = [];
-    $properties['enable_student_hosting'] = DataDefinition::create('boolean')
-      ->setLabel(t('Turn this on if your school is open to hosting students from other schools. You can set requirements, including fees, for students who wish to visit.'));
-  
+    
+    $properties['enabled'] = DataDefinition::create('boolean');
+    $properties['cost'] = DataDefinition::create('string');
+    $properties['currency'] = DataDefinition::create('string');
+    $properties['description'] = DataDefinition::create('string');
+      
     return $properties;
   }
   
@@ -52,8 +69,10 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
    * {@inheritdoc}
    */
   public function isEmpty() {
-    $value = $this->get('enable_student_hosting')->getValue();
-    return $value === NULL || $value === FALSE;
+    // we don't want it to be considered empty when disabled because that will erase all data.
+    //$value = $this->get('enabled')->getValue();
+    //return $value == FALSE;
+    return FALSE;
   }
 
 }

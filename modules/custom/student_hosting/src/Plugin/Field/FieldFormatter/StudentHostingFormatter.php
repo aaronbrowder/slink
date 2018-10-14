@@ -16,4 +16,22 @@ use Drupal\Core\Field\FieldItemListInterface;
  *   }
  * )
  */
-class StudentHostingFormatter extends FormatterBase { }
+class StudentHostingFormatter extends FormatterBase {
+    
+    /**
+   * {@inheritdoc}
+   */
+  public function viewElements(FieldItemListInterface $items, $langcode) {
+    $elements = [];
+
+    foreach ($items as $delta => $item) {
+      $elements[$delta] = [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#value' => $item->value,
+        '#attributes' => [],
+      ];
+    }
+    return $elements;
+  }
+}

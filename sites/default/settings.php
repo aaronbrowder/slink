@@ -297,7 +297,7 @@ $config_directories = array();
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'VWC_mHlLDnc31c9S_WxXcKRynFe4MH-9QgTQo5gKQQZhyARaJZAOzXm9VdMhrGvbpxwkxREcXg';
+$settings['hash_salt'] = 'fWrS1f8cgBmA61fQK7RDqkt4wVVMLo0teH5FeOOIsb0u3Sw_SXUdPmB6290XwY4NHl4nTJN4mQ';
 
 /**
  * Deployment identifier.
@@ -786,19 +786,14 @@ $settings['entity_update_batch_size'] = 50;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 $databases['default']['default'] = array (
-  'database' => 'slinkonl_db2',
-  'username' => 'slinkonl_db2',
-  'password' => 'SyAH{zfB+Dx;',
+  'database' => 'c9',
+  'username' => 'aaronbrowder',
+  'password' => '',
   'prefix' => '',
-  'host' => 'localhost',
+  'host' => '127.0.0.1',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
 $settings['install_profile'] = 'standard';
-$config_directories['sync'] = 'sites/default/files/config_l82_ZyOv11przoyCmlvsbeX2ecUGqlqVnEGmutCcmnT1eObSplEXUq9MSj_t7Of1Ok-eSDGKqA/sync';
-
-error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
-$config['system.logging']['error_level'] = 'verbose';
+$config_directories['sync'] = 'sites/default/files/config_z36kBGJ8NDEv68cGv9zL_pm7jhy6F-K3jgeDf3aolgrfPA73v0O0hrxmOCnQVues1hdObGIWSg/sync';

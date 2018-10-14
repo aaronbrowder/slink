@@ -128,7 +128,7 @@ class Table extends FieldGroupFormatterBase {
       ];
     }
 
-    $table['#empty'] = t('There is nothing to display');
+    //$table['#empty'] = t('There is nothing to display');
 
     if ($this->getSetting('caption') !== "") {
       $table['#caption'] = $this->getSetting('caption');
@@ -142,16 +142,18 @@ class Table extends FieldGroupFormatterBase {
     $fields = Element::children($element);
     $rows = [];
     foreach ($fields as $key) {
-      $rows[] = [
-        'no_striping' => TRUE,
-        'data' => [
-          [
-            'header' => TRUE,
-            'data' => render($element[$key]['#title'])
-          ],
-          render($element[$key])
-        ]
-      ];
+      if (!empty($element[$key]['#title'])) {
+        $rows[] = [
+          'no_striping' => TRUE,
+          'data' => [
+            [
+              'header' => TRUE,
+              'data' => render($element[$key]['#title'])
+            ],
+            render($element[$key])
+          ]
+        ]; 
+      }
       $element[$key]['#title'] = '';
       unset($element[$key]);
     }
