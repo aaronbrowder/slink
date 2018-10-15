@@ -39,17 +39,10 @@ class StudentHostingWidget extends WidgetBase  {
     $item = $items[$delta];
     $value = $item->getEntity()->isNew() ? $this->getInitialValues() : $item->toArray();
     
-    $isGuest = $this->getSetting('type') === 'guest';
-    
-    $enablerTerm = $isGuest ? t('Allow Student Guests') : t('Allow Student Ambassadors');
-    $enablerDescription = $isGuest
-      ? t('Turn this on if you are open to hosting students from other schools in exchange for a fee.')
-      : t('Turn this on if you are open to hosting student ambassadors. An ambassador is an experienced student from another school who will perform duties and/or help build your culture in exchange for wages.');
-    
-    $costTerm = $isGuest ? t('Weekly Fee') : t('Weekly Wage');
-    $costDescription = $isGuest
-      ? t('This is the weekly fee that must be paid to the host school by the sending family or sending school.')
-      : t('This is the weekly wage that will be paid to the student ambassador.');
+    $enablerTerm = $this->getSetting('enabler_term');
+    $enablerDescription = $this->getSetting('enabler_description');
+    $costTerm = $this->getSetting('cost_term');;
+    $costDescription = $this->getSetting('cost_description');
     
     $enablerId = str_replace(' ', '-', $element['#title']) . '-enabler';
     
@@ -75,8 +68,9 @@ class StudentHostingWidget extends WidgetBase  {
       '#type' => 'textfield',
       '#title' => $costTerm,
       '#description' => $costDescription,
-      '#default_value' => isset($item->cost) ? $item->cost : '',
+      '#default_value' => isset($item->cost) ? $item->cost : 0,
       '#states' => $states,
+      '#required' => TRUE,
       '#attributes' => [
         ' type' => 'number', // insert space before attribute name
         'step' => .01,
@@ -121,23 +115,52 @@ class StudentHostingWidget extends WidgetBase  {
     return $values;
   }
   
+  /**
+   * {@inheritdoc}
+   */
   public static function defaultSettings() {
     return [
-      'type' => 'guest',
+      'enabler_term' => 'Allow Student Hosting',
+      'enabler_description' => 'Turn this on if you want to host students from other schools.',
+      'cost_term' => 'Weekly Cost',
+      'cost_description' => 'This is the weekly cost.',
     ] + parent::defaultSettings();
   }
   
+  /**
+   * {@inheritdoc}
+   */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     
-    $output['type'] = array(
-      '#title' => t('Type'),
-      '#type' => 'select',
-      '#options' => [
-        'guest' => t('Guest'),
-        'ambassador' => t('Ambassador'),
-      ],
-      '#default_value' => $this->getSetting('type'),
-    );
+    $output['enabler_term'] = [
+      '#title' => t('Enabler Term'),
+      '#type' => 'textfield',
+      '#default_value' => $this->getSetting('enabler_term'),
+      '#attributes' => [
+        'size' => 32
+      ]
+    ];
+    
+    $output['enabler_description'] = [
+      '#title' => t('Enabler Description'),
+      '#type' => 'textarea',
+      '#default_value' => $this->getSetting('enabler_description'),
+    ];
+    
+    $output['cost_term'] = [
+      '#title' => t('Cost Term'),
+      '#type' => 'textfield',
+      '#default_value' => $this->getSetting('cost_term'),
+      '#attributes' => [
+        'size' => 32
+      ]
+    ];
+    
+    $output['cost_description'] = [
+      '#title' => t('Cost Description'),
+      '#type' => 'textarea',
+      '#default_value' => $this->getSetting('cost_description'),
+    ];
   
     return $output;
   }

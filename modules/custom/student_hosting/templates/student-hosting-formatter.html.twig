@@ -1,0 +1,26 @@
+<details class="js-form-wrapper form-wrapper">
+    <summary>{{title}}</summary>
+    <div class="details-wrapper">
+        {{description}}
+        <h2>Am I eligible?</h2>
+        <ul>
+            <li>Yes of course!</li>
+        </ul>
+        <h2>What does it cost?</h2>
+        <ul>
+            <li>You or your school must pay for travel expenses.</li>
+            {% if fee > 0 %}
+                <li>
+                    You or your school must pay a weekly fee of {{fee}} ({{currency}}). This money
+                    pays for your food and lodging, and helps cover {{school_name}}'s operating costs.
+                </li>
+            {% endif %}
+            {% if isWage %}
+                <li>You don't have to worry about paying for food or lodging.</li>
+                {% if wage > 0 %}
+                    <li>You will receive a weekly wage of {{wage}} ({{currency}}) for your services.</li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    </div>
+</details>

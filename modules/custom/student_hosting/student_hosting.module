@@ -1,1 +1,22 @@
 <?php
+
+/**
+ * Implements hook_theme().
+ */
+function student_hosting_theme() {
+  return [
+    'student_hosting_formatter' => [
+      'variables' => [
+        'title' => NULL,
+        'description' => NULL,
+        'isWage' => FALSE,
+        'fee' => NULL,
+        'wage' => NULL,
+        'currency' => NULL,
+        'program_parameters' => NULL,
+        'school_name' => NULL
+      ],
+      'template' => 'student-hosting-formatter',
+    ],
+  ];
+}
