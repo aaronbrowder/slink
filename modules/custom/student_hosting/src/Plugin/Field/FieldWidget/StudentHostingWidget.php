@@ -82,12 +82,39 @@ class StudentHostingWidget extends WidgetBase  {
       '#type' => 'textfield',
       '#title' => t('Currency'),
       '#description' => t('The type of currency for the above amount, for example "USD".'),
-      '#default_value' => isset($item->currency) ? $item->currency : '',
+      '#default_value' => isset($item->currency) ? $item->currency : 'USD',
       '#states' => $states,
+      '#required' => TRUE,
       '#attributes' => [
         'size' => 8
       ]
     ];
+    // $element['min_age'] = [
+    //   '#type' => 'textfield',
+    //   '#title' => t('Minimum Age'),
+    //   '#description' => t('The minimum age for a student to be eligible for the program.'),
+    //   '#default_value' => isset($item->min_age) ? $item->min_age : 0,
+    //   '#states' => $states,
+    //   '#required' => TRUE,
+    //   '#attributes' => [
+    //     ' type' => 'number', // insert space before attribute name
+    //     'min' => 0,
+    //     'max' => 99
+    //   ]
+    // ];
+    // $element['min_years_enrolled'] = [
+    //   '#type' => 'textfield',
+    //   '#title' => t('Minimum Years Enrolled'),
+    //   '#description' => t('The minimum number of years a student must have been enrolled in their home school in order to be eligible for the program.'),
+    //   '#default_value' => isset($item->min_years_enrolled) ? $item->min_years_enrolled : 0,
+    //   '#states' => $states,
+    //   '#required' => TRUE,
+    //   '#attributes' => [
+    //     ' type' => 'number', // insert space before attribute name
+    //     'min' => 0,
+    //     'max' => 99
+    //   ]
+    // ];
     $element['description'] = [
       '#type' => 'text_format',
       '#allowed_formats' => [

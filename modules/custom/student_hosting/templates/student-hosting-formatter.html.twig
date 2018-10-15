@@ -2,10 +2,17 @@
     <summary>{{title}}</summary>
     <div class="details-wrapper">
         {{description}}
-        <h2>Am I eligible?</h2>
-        <ul>
-            <li>Yes of course!</li>
-        </ul>
+        {% if has_eligibility_requirements %}
+            <h2>Am I eligible?</h2>
+            <ul>
+                {% if min_age > 0 %}
+                    <li>You must be at least {{min_age}} years old.</li>
+                {% endif %}
+                {% if min_years_enrolled > 0 %}
+                    <li>You must have been enrolled in your school for at least {{min_years_enrolled}} years.</li>
+                {% endif %}
+            </ul>
+        {% endif %}
         <h2>What does it cost?</h2>
         <ul>
             <li>You or your school must pay for travel expenses.</li>

@@ -31,14 +31,16 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
         'enabled' => [
           'type' => 'int',
           'size' => 'tiny',
-          'not null' => TRUE
+          'not null' => TRUE,
+          'default' => 0
         ],
         'cost' => [
           'type' => 'numeric',
           'unsigned' => TRUE, 
           'precision' => 6,
           'scale' => 2,
-          'not null' => FALSE
+          'not null' => TRUE,
+          'default' => 0
         ],
         'currency' => [
           'type' => 'varchar',
@@ -47,6 +49,18 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
         'description' => [
           'type' => 'text'
         ],
+        // 'min_age' => [
+        //   'type' => 'int',
+        //   'size' => 'tiny',
+        //   'not null' => TRUE,
+        //   'default' => 0
+        // ],
+        // 'min_years_enrolled' => [
+        //   'type' => 'int',
+        //   'size' => 'tiny',
+        //   'not null' => TRUE,
+        //   'default' => 0
+        // ],
       ],
     ];
   }
@@ -61,6 +75,8 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
     $properties['cost'] = DataDefinition::create('string');
     $properties['currency'] = DataDefinition::create('string');
     $properties['description'] = DataDefinition::create('string');
+    // $properties['min_age'] = DataDefinition::create('integer');
+    // $properties['min_years_enrolled`'] = DataDefinition::create('integer');
       
     return $properties;
   }
