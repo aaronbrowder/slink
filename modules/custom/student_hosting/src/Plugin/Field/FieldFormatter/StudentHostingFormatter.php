@@ -44,8 +44,8 @@ class StudentHostingFormatter extends FormatterBase {
           '#fee' => $isWage ? 0 : $item->cost,
           '#currency' => $item->currency,
           '#has_eligibility_requirements' => $item->min_age > 0 || $item->min_years_enrolled > 0,
-          // '#min_age' => $item->min_age,
-          // '#min_years_enrolled' => $item->min_years_enrolled,
+          '#min_age' => $item->min_age,
+          '#min_years_enrolled' => $item->min_years_enrolled,
           '#program_parameters' => $item->description,
           '#school_name' => $schoolName
         ];
