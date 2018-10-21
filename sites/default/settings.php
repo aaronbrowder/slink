@@ -796,4 +796,6 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
 );
 $config_directories['sync'] = 'sites/default/files/config_Pa8XNcvzEOtNFciBch-AtN86KiSs2LJYGZPvvvIDAQ1U_Yfj3QrJXaOER-lsSBlZ7JA6MVIrYQ/sync';
+
 $config['system.logging']['error_level'] = 'verbose';
+$settings['file_private_path'] = 'sites/default/files/private';

@@ -25,29 +25,37 @@ class StudentHostingFormatter extends FormatterBase {
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
 
-    $isWage = $this->getSetting('cost_type') == 'wages';
+    $is_wage = $this->getSetting('cost_type') == 'wages';
     
-    $schoolName = 'School';
+    $school_name = 'School';
+    $school_node_id = 0;
     $node = \Drupal::routeMatch()->getParameter('node');
     if ($node instanceof \Drupal\node\NodeInterface) {
-      $schoolName = $node->getTitle();
+      $school_name = $node->getTitle();
+      $school_node_id = $node->id();
     }
+    
+    $field_definition = $this->fieldDefinition->getItemDefinition()->getFieldDefinition();
+    $field_name = $field_definition->getName();
+    $field_label = $field_definition->getLabel();
 
     foreach ($items as $delta => $item) {
       if ($item->enabled) {
         $elements[$delta] = [
           '#theme' => 'student_hosting_formatter',
-          '#title' => $this->getSetting('title'),
-          '#description' => $this->getSetting('description'),
-          '#isWage' => $isWage,
-          '#wage' => $isWage ? $item->cost : 0,
-          '#fee' => $isWage ? 0 : $item->cost,
+          '#title' => t($field_label),
+          '#description' => t($this->getSetting('description')),
+          '#isWage' => $is_wage,
+          '#wage' => $is_wage ? $item->cost : 0,
+          '#fee' => $is_wage ? 0 : $item->cost,
           '#currency' => $item->currency,
           '#has_eligibility_requirements' => $item->min_age > 0 || $item->min_years_enrolled > 0,
           '#min_age' => $item->min_age,
           '#min_years_enrolled' => $item->min_years_enrolled,
-          '#program_parameters' => $item->description,
-          '#school_name' => $schoolName
+          '#program_parameters' => t($item->description),
+          '#school_name' => $school_name,
+          '#school_node_id' => $school_node_id,
+          '#student_hosting_field_name' => t($field_name)
         ];
       }
     }
@@ -59,7 +67,6 @@ class StudentHostingFormatter extends FormatterBase {
    */
   public static function defaultSettings() {
     return [
-      'title' => 'Student Hosting',
       'cost_type' => 'Fees',
       'description' => 'Student hosting is awesome!',
     ] + parent::defaultSettings();
@@ -69,15 +76,6 @@ class StudentHostingFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    
-    $output['title'] = [
-      '#title' => t('Title'),
-      '#type' => 'textfield',
-      '#default_value' => $this->getSetting('title'),
-      '#attributes' => [
-        'size' => 32
-      ]
-    ];
     
     $output['cost_type'] = [
       '#title' => t('Cost Type'),

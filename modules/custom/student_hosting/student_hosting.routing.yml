@@ -1,0 +1,8 @@
+
+student_hosting.application_form:
+  path: 'node/{node}/{field}/application'
+  defaults:
+    _form:  '\Drupal\student_hosting\Form\ApplicationForm'
+    _title_callback: '\Drupal\student_hosting\Form\ApplicationForm::title'
+  requirements:
+    _permission: 'access content'
