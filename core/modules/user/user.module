@@ -1422,3 +1422,18 @@ function template_preprocess_user(&$variables) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
 }
+
+/**
+ * Determine if the user account 'mail' field is required.
+ *
+ * @param \Drupal\user\UserInterface $user
+ *   User editing the account.
+ *
+ * @return boolean True if the mail field is required.
+ */
+function user_mail_required(AccountInterface $user) {
+  $required = !$user->hasPermission('administer users');
+  \Drupal::moduleHandler()->alter('user_mail_required', $required, $user);
+
+  return $required;
+}
