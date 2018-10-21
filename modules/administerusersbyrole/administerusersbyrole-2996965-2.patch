@@ -1,0 +1,22 @@
+diff --git a/administerusersbyrole.module b/administerusersbyrole.module
+index 83a66e3..b339327 100644
+--- a/administerusersbyrole.module
++++ b/administerusersbyrole.module
+@@ -60,6 +60,17 @@ function administerusersbyrole_user_access(UserInterface $user, $operation, Acco
+   return $result->cachePerPermissions()->addCacheableDependency($user);
+ }
+ 
++/**
++ * Implements hook_entity_create_access().
++ */
++function administerusersbyrole_entity_create_access(AccountInterface $account, array $context, $entity_bundle) {
++  if ($context['entity_type_id'] != 'user') {
++    return AccessResult::neutral();
++  }
++
++  return AccessResult::allowedIfHasPermission($account, 'create users');
++}
++
+ /**
+  * Implements hook_entity_field_access().
+  */

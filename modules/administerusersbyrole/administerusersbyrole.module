@@ -91,6 +91,28 @@ function administerusersbyrole_entity_create_access(AccountInterface $account, a
 }
 
 /**
+ * Implements hook_entity_create_access().
+ */
+function administerusersbyrole_entity_create_access(AccountInterface $account, array $context, $entity_bundle) {
+  if ($context['entity_type_id'] != 'user') {
+    return AccessResult::neutral();
+  }
+
+  return AccessResult::allowedIfHasPermission($account, 'create users');
+}
+
+/**
+ * Implements hook_entity_create_access().
+ */
+function administerusersbyrole_entity_create_access(AccountInterface $account, array $context, $entity_bundle) {
+  if ($context['entity_type_id'] != 'user') {
+    return AccessResult::neutral();
+  }
+
+  return AccessResult::allowedIfHasPermission($account, 'create users');
+}
+
+/**
  * Implements hook_entity_field_access().
  */
 function administerusersbyrole_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemList $items = NULL) {
