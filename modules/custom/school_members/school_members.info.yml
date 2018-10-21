@@ -1,0 +1,4 @@
+name: School Members
+type: module
+description: 'Adds custom user behavior for school admins and members.'
+core: 8.x

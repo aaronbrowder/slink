@@ -1,0 +1,22 @@
+<?php
+
+use Drupal\user\UserInterface;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function school_members_user_presave(UserInterface $user) {
+    // if creating a new user and current user has role school_admin:
+    //   1. new user should have role school_member
+    //   2. new user's school should be same as current user's school
+    //   3. new user's locale should be same as current user's locale
+    if ($user->isNew()) {
+        $current_user = User::load(Drupal::currentUser()->id());
+        if ($current_user->hasRole('school_admin')) {
+            $user->addRole('school_member');
+            $user->set('field_school', $current_user->get('field_school')->getValue());
+            $user->set('timezone', $current_user->getTimeZone());
+        }
+    }
+}
