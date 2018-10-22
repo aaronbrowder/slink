@@ -21,9 +21,15 @@ function student_hosting_theme() {
         'min_years_enrolled' => 0,
         'has_eligibility_requirements' => FALSE,
         'program_parameters' => NULL,
+        'expectations' => NULL,
+        'has_expectations' => FALSE,
         'school_name' => NULL,
         'school_node_id' => NULL,
-        'student_hosting_field_name' => NULL
+        'student_hosting_field_name' => NULL,
+        'require_jc_record' => FALSE,
+        'require_sm_approval' => FALSE,
+        'require_recommendation_letter' => FALSE,
+        'has_required_documents' => FALSE
       ],
       'template' => 'student-hosting-formatter',
     ],

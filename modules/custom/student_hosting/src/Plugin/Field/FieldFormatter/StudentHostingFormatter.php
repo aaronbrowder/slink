@@ -35,9 +35,8 @@ class StudentHostingFormatter extends FormatterBase {
       $school_node_id = $node->id();
     }
     
-    $field_definition = $this->fieldDefinition->getItemDefinition()->getFieldDefinition();
-    $field_name = $field_definition->getName();
-    $field_label = $field_definition->getLabel();
+    $field_name = $this->fieldDefinition->getName();
+    $field_label = $this->fieldDefinition->getLabel();
 
     foreach ($items as $delta => $item) {
       if ($item->enabled) {
@@ -52,10 +51,15 @@ class StudentHostingFormatter extends FormatterBase {
           '#has_eligibility_requirements' => $item->min_age > 0 || $item->min_years_enrolled > 0,
           '#min_age' => $item->min_age,
           '#min_years_enrolled' => $item->min_years_enrolled,
-          '#program_parameters' => t($item->description),
+          '#expectations' => t($item->expectations),
+          '#has_expectations' => !empty($item->expectations),
           '#school_name' => $school_name,
           '#school_node_id' => $school_node_id,
-          '#student_hosting_field_name' => t($field_name)
+          '#student_hosting_field_name' => t($field_name),
+          '#require_jc_record' => $item->require_jc_record,
+          '#require_sm_approval' => $item->require_sm_approval,
+          '#require_recommendation_letter' => $item->require_recommendation_letter,
+          '#has_required_documents' => $item->require_jc_record || $item->require_sm_approval || $item->require_recommendation_letter
         ];
       }
     }

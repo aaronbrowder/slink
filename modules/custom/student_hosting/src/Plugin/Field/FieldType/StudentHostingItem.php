@@ -46,9 +46,6 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
           'type' => 'varchar',
           'length' => 255
         ],
-        'description' => [
-          'type' => 'text'
-        ],
         'min_age' => [
           'type' => 'int',
           'size' => 'tiny',
@@ -60,6 +57,30 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
           'size' => 'tiny',
           'not null' => TRUE,
           'default' => 0
+        ],
+        'expectations' => [
+          'type' => 'text'
+        ],
+        'require_jc_record' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'not null' => TRUE,
+          'default' => 0
+        ],
+        'require_sm_approval' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'not null' => TRUE,
+          'default' => 0
+        ],
+        'require_recommendation_letter' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'not null' => TRUE,
+          'default' => 0
+        ],
+        'questions' => [
+          'type' => 'text'
         ],
       ],
     ];
@@ -74,9 +95,13 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
     $properties['enabled'] = DataDefinition::create('boolean');
     $properties['cost'] = DataDefinition::create('string');
     $properties['currency'] = DataDefinition::create('string');
-    $properties['description'] = DataDefinition::create('string');
     $properties['min_age'] = DataDefinition::create('integer');
     $properties['min_years_enrolled'] = DataDefinition::create('integer');
+    $properties['expectations'] = DataDefinition::create('string');
+    $properties['require_jc_record'] = DataDefinition::create('boolean');
+    $properties['require_sm_approval'] = DataDefinition::create('boolean');
+    $properties['require_recommendation_letter'] = DataDefinition::create('boolean');
+    $properties['questions'] = DataDefinition::create('string');
       
     return $properties;
   }

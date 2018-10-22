@@ -28,26 +28,29 @@ class ApplicationForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state, NodeInterface $node = NULL, $field = NULL) {
 
     $student_hosting = $node->get($field);
-    $description = $student_hosting->description;
-    $field_label = $node->get($field)->getFieldDefinition()->getLabel();
+    $questionnaire = $student_hosting->questions;
+    $questions = explode("\n", $questionnaire);
     
-    $form['thing'] = [
+    foreach ($questions as $question_id => $question) {
+      $form['question_' . $question_id] = [
         '#type' => 'textfield',
-        '#title' => t($field_label),
-        '#description' => t($node->get($field)->description)
-    ];
+        '#title' => t($question),
+        '#required' => FALSE,
+        '#attributes' => [ 'size' => 100 ]
+      ];
+    }
 
-    $form['description'] = [
-      '#type' => 'item',
-      '#markup' => $this->t('This basic example shows a single text input element and a submit button'),
-    ];
+    // $form['description'] = [
+    //   '#type' => 'item',
+    //   '#markup' => $this->t('This basic example shows a single text input element and a submit button'),
+    // ];
 
-    $form['title'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Title'),
-      '#description' => $this->t('Title must be at least 5 characters in length.'),
-      '#required' => TRUE,
-    ];
+    // $form['title'] = [
+    //   '#type' => 'textfield',
+    //   '#title' => $this->t('Title'),
+    //   '#description' => $this->t('Title must be at least 5 characters in length.'),
+    //   '#required' => TRUE,
+    // ];
 
     // Group submit handlers in an actions element with a key of "actions" so
     // that it gets styled correctly, and so that other modules may add actions

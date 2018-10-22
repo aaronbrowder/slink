@@ -29,7 +29,26 @@
                 {% endif %}
             {% endif %}
         </ul>
-        {{program_parameters|raw}}
-        <a href="/node/{{school_node_id}}/{{student_hosting_field_name}}/application">APPLY</a>
+        {% if has_expectations %}
+            <h2>Expectations</h2>
+            {{expectations}}
+        {% endif %}
+        {% if has_required_documents %}
+            <h2>Required Documents</h2>
+            <ul>
+            {% if require_jc_record %}
+                <li>Your JC record for the current year. Obtain this from an official representative, such as your JC Clerk. The document should be signed by the official representative.</li>
+            {% endif %}
+            {% if require_sm_approval %}
+                <li>A document, signed by your School Meeting Clerk or other official representative, stating that you have received approval from your School Meeting to be a guest at our school.</li>
+            {% endif %}
+            {% if require_recommendation_letter %}
+                <li>A letter of recommendation written by a staff member at your school. This letter should explain why the staff member thinks you will be a pleasant and worthwhile addition to our school.</li>
+            {% endif %}
+            </ul>
+        {% endif %}
+        <div>
+            <a href="/node/{{school_node_id}}/{{student_hosting_field_name}}/application">APPLY</a>
+        </div>
     </div>
 </details>
