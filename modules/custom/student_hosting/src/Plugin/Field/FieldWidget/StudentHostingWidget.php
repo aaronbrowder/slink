@@ -149,6 +149,7 @@ class StudentHostingWidget extends WidgetBase  {
       '#description' => t('List questions you would like the applicant to answer, one question per line.'),
       '#default_value' => isset($item->questions) ? $item->questions : '',
       '#states' => $states,
+      '#required' => TRUE,
       '#attributes' => [
         'rows' => 12
       ]

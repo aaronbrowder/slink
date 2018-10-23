@@ -11,11 +11,11 @@ function student_hosting_theme() {
   return [
     'student_hosting_formatter' => [
       'variables' => [
+        'use_container' => FALSE,
+        'use_apply_button' => FALSE,
+        'field_name' => NULL,
         'title' => NULL,
-        'description' => NULL,
-        'isWage' => FALSE,
-        'fee' => 0,
-        'wage' => 0,
+        'cost' => 0,
         'currency' => NULL,
         'min_age' => 0,
         'min_years_enrolled' => 0,
@@ -24,39 +24,16 @@ function student_hosting_theme() {
         'expectations' => NULL,
         'has_expectations' => FALSE,
         'school_name' => NULL,
-        'school_node_id' => NULL,
-        'student_hosting_field_name' => NULL,
+        'school_node_id' => 0,
         'require_jc_record' => FALSE,
         'require_sm_approval' => FALSE,
         'require_recommendation_letter' => FALSE,
-        'has_required_documents' => FALSE
+        'has_required_documents' => FALSE,
+        'jc_record_document_description' => NULL,
+        'sm_approval_document_description' => NULL,
+        'recommendation_letter_document_description' => NULL
       ],
-      'template' => 'student-hosting-formatter',
+      'template' => 'student_hosting_formatter',
     ],
   ];
-}
-
-/**
- * Implements hook_ENTITY_TYPE_insert().
- * Executes when a new school entity is inserted.
- * This creates webforms for student hosting applications.
- * The webforms are constructed programatically based on student_hosting fields.
- */
-function hook_school_insert(NodeInterface $school) {
-  //create_student_guest_application($school);
-}
-
-function create_student_guest_application(NodeInterface $school) {
-  $current_user = User::load(Drupal::currentUser()->id());
-  $application = Node::create([
-    'type' => 'application',
-    'title' => $school->getTitle() . ' Student Guest Application'
-  ]);
-  $application->field_school->entity = $school;
-  $application->field_applicant->entity = $current_user;
-  //$application->webform = create_webform($school->field_student_guest_program->value);
-  $application->save();
-}
-
-function create_webform(NodeInterface $student_hosting) {
 }

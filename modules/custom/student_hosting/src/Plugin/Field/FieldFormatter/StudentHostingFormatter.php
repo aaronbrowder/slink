@@ -19,14 +19,16 @@ use Drupal\Core\Field\FieldItemListInterface;
  */
 class StudentHostingFormatter extends FormatterBase {
     
-    /**
+  const JC_RECORD_DOCUMENT_DESCRIPTION = 'Your JC record for the current year. Obtain this from an official representative, such as your JC Clerk. The document should be signed by the official representative.';
+  const SM_APPROVAL_DOCUMENT_DESCRIPTION = 'A document, signed by your School Meeting Clerk or other official representative, stating that you have received approval from your School Meeting to be a guest at our school.';
+  const RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION = 'A letter of recommendation written by a staff member at your school. This letter should explain why the staff member thinks you will be a pleasant and worthwhile addition to our school.';
+    
+  /**
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
 
-    $is_wage = $this->getSetting('cost_type') == 'wages';
-    
     $school_name = 'School';
     $school_node_id = 0;
     $node = \Drupal::routeMatch()->getParameter('node');
@@ -42,11 +44,11 @@ class StudentHostingFormatter extends FormatterBase {
       if ($item->enabled) {
         $elements[$delta] = [
           '#theme' => 'student_hosting_formatter',
+          '#use_container' => TRUE,
+          '#use_apply_button' => TRUE,
+          '#field_name' => $field_name,
           '#title' => t($field_label),
-          '#description' => t($this->getSetting('description')),
-          '#isWage' => $is_wage,
-          '#wage' => $is_wage ? $item->cost : 0,
-          '#fee' => $is_wage ? 0 : $item->cost,
+          '#cost' => $item->cost,
           '#currency' => $item->currency,
           '#has_eligibility_requirements' => $item->min_age > 0 || $item->min_years_enrolled > 0,
           '#min_age' => $item->min_age,
@@ -55,49 +57,17 @@ class StudentHostingFormatter extends FormatterBase {
           '#has_expectations' => !empty($item->expectations),
           '#school_name' => $school_name,
           '#school_node_id' => $school_node_id,
-          '#student_hosting_field_name' => t($field_name),
           '#require_jc_record' => $item->require_jc_record,
           '#require_sm_approval' => $item->require_sm_approval,
           '#require_recommendation_letter' => $item->require_recommendation_letter,
-          '#has_required_documents' => $item->require_jc_record || $item->require_sm_approval || $item->require_recommendation_letter
+          '#has_required_documents' => $item->require_jc_record || $item->require_sm_approval || $item->require_recommendation_letter,
+          '#jc_record_document_description' => t(self::JC_RECORD_DOCUMENT_DESCRIPTION),
+          '#sm_approval_document_description' => t(self::SM_APPROVAL_DOCUMENT_DESCRIPTION),
+          '#recommendation_letter_document_description' => t(self::RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION)
         ];
       }
     }
     return $elements;
-  }
-  
-  /**
-   * {@inheritdoc}
-   */
-  public static function defaultSettings() {
-    return [
-      'cost_type' => 'Fees',
-      'description' => 'Student hosting is awesome!',
-    ] + parent::defaultSettings();
-  }
-  
-  /**
-   * {@inheritdoc}
-   */
-  public function settingsForm(array $form, FormStateInterface $form_state) {
-    
-    $output['cost_type'] = [
-      '#title' => t('Cost Type'),
-      '#type' => 'select',
-      '#options' => [
-        'fees' => t('Fees'),
-        'wages' => t('Wages'),
-      ],
-      '#default_value' => $this->getSetting('description'),
-    ];
-    
-    $output['description'] = [
-      '#title' => t('Description'),
-      '#type' => 'textarea',
-      '#default_value' => $this->getSetting('description'),
-    ];
-  
-    return $output;
   }
   
 }

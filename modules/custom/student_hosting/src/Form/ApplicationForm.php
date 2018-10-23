@@ -4,7 +4,8 @@ namespace Drupal\student_hosting\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use \Drupal\node\NodeInterface;
+use Drupal\node\NodeInterface;
+use Drupal\student_hosting\Plugin\Field\FieldFormatter\StudentHostingFormatter;
 
 /**
  * Implements the ApplicationForm form controller.
@@ -27,30 +28,69 @@ class ApplicationForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state, NodeInterface $node = NULL, $field = NULL) {
 
-    $student_hosting = $node->get($field);
-    $questionnaire = $student_hosting->questions;
-    $questions = explode("\n", $questionnaire);
+    $item = $node->get($field);
+    $school_name = $node->getTitle();
+    $field_name = $item->getFieldDefinition()->getName();
+    $field_label = $item->getFieldDefinition()->getLabel();
     
+    $form['description'] = [
+      '#theme' => 'student_hosting_formatter',
+      '#title' => t($field_label),
+      '#field_name' => $field_name,
+      '#cost' => $item->cost,
+      '#currency' => $item->currency,
+      '#has_eligibility_requirements' => $item->min_age > 0 || $item->min_years_enrolled > 0,
+      '#min_age' => $item->min_age,
+      '#min_years_enrolled' => $item->min_years_enrolled,
+      '#expectations' => t($item->expectations),
+      '#has_expectations' => !empty($item->expectations),
+      '#school_name' => $school_name
+    ];
+    
+    if ($item->require_jc_record || $item->require_sm_approval || $item->require_sm_approval) {
+      $form['documents_header']['#markup'] =
+        '<hr><h2>' . t('Required Documents') . '</h2><p>' . t('Please upload the following documents:') . '</p>'; 
+    }
+    
+    if ($item->require_jc_record) {
+      $form['jc_record'] = [
+        '#type' => 'file',
+        '#title' => t('JC Record'),
+        '#description' => t(StudentHostingFormatter::JC_RECORD_DOCUMENT_DESCRIPTION),
+        '#required' => TRUE
+      ]; 
+    }
+    
+    if ($item->require_sm_approval) {
+      $form['sm_approval'] = [
+        '#type' => 'file',
+        '#title' => t('School Meeting Approval'),
+        '#description' => t(StudentHostingFormatter::SM_APPROVAL_DOCUMENT_DESCRIPTION),
+        '#required' => TRUE
+      ]; 
+    }
+    
+    if ($item->require_recommendation_letter) {
+      $form['recommendation_letter'] = [
+        '#type' => 'file',
+        '#title' => t('Recommendation Letter'),
+        '#description' => t(StudentHostingFormatter::RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION),
+        '#required' => TRUE
+      ]; 
+    }
+    
+    $form['questionnaire_header']['#markup'] =
+      '<hr><h2>' . t('Questionnaire') . '</h2><p>' . t('Please answer the following questions:') . '</p>';
+    
+    $questions = explode("\n", $item->questions);
     foreach ($questions as $question_id => $question) {
       $form['question_' . $question_id] = [
         '#type' => 'textfield',
         '#title' => t($question),
-        '#required' => FALSE,
+        '#required' => TRUE,
         '#attributes' => [ 'size' => 100 ]
       ];
     }
-
-    // $form['description'] = [
-    //   '#type' => 'item',
-    //   '#markup' => $this->t('This basic example shows a single text input element and a submit button'),
-    // ];
-
-    // $form['title'] = [
-    //   '#type' => 'textfield',
-    //   '#title' => $this->t('Title'),
-    //   '#description' => $this->t('Title must be at least 5 characters in length.'),
-    //   '#required' => TRUE,
-    // ];
 
     // Group submit handlers in an actions element with a key of "actions" so
     // that it gets styled correctly, and so that other modules may add actions

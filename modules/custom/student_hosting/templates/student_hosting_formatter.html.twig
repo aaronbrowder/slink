@@ -1,0 +1,85 @@
+{% if use_container %}
+<details class="js-form-wrapper form-wrapper">
+    <summary>{{title}}</summary>
+    <div class="details-wrapper">
+{% endif %}
+        {% if field_name == 'field_student_guest_program' %}
+            
+                {{school_name}} is accepting applications for student guests. If you are a student at a SLINK member school, you can come visit {{school_name}} for a number of weeks, staying with a host family and going to school as if you were enrolled here.
+            
+        {% endif %}
+        {% if field_name == 'field_student_ambassador_program' %}
+            
+                {{school_name}} is accepting applications for student ambassadors. If you have been a student at a SLINK member school for a long time and have a lot of experience, we might be interested in hiring you as a student ambassador. As an ambassador you would stay with a host family and come to {{school_name}} as if you were enrolled here. You would be expected to help our school in some way in exchange for wages.
+            
+        {% endif %}
+        {% if has_eligibility_requirements %}
+            <h2>{% trans %}Am I eligible?{% endtrans %}</h2>
+            <ul>
+                {% if min_age > 0 %}
+                    <li>
+                        
+                            You must be at least {{min_age}} years old.
+                        
+                    </li>
+                {% endif %}
+                {% if min_years_enrolled > 0 %}
+                    <li>
+                        
+                            You must have been enrolled in your school for at least {{min_years_enrolled}} year(s).
+                        
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+        <h2>{% trans %}What does it cost?{% endtrans %}</h2>
+        <ul>
+            <li>{% trans %}You or your school must pay for travel expenses.{% endtrans %}</li>
+            {% if field_name == 'field_student_guest_program' %}
+                {% if cost > 0 %}
+                    <li>
+                        
+                            You or your school must pay a weekly fee of {{cost}} ({{currency}}). This money
+                            pays for your food and housing, and helps cover {{school_name}}'s operating costs.
+                        
+                    </li>
+                {% endif %}
+            {% endif %}
+            {% if field_name == 'field_student_ambassador_program' %}
+                <li>{% trans %}You don't have to worry about paying for food or housing.{% endtrans %}</li>
+                {% if cost > 0 %}
+                    <li>
+                        
+                            You will receive a weekly wage of {{cost}} ({{currency}}) for your services.
+                        
+                    </li>
+                {% endif %}
+            {% endif %}
+        </ul>
+        {% if has_expectations %}
+            <h2>{% trans %}Expectations{% endtrans %}</h2>
+            <p>{{expectations}}</p>
+        {% endif %}
+        {% if has_required_documents %}
+            <h2>{% trans %}Required Documents{% endtrans %}</h2>
+            <ul>
+            {% if require_jc_record %}
+                <li>{{jc_record_document_description}}</li>
+            {% endif %}
+            {% if require_sm_approval %}
+                <li>{{sm_approval_document_description}}</li>
+            {% endif %}
+            {% if require_recommendation_letter %}
+                <li>{{recommendation_letter_document_description}}</li>
+            {% endif %}
+            </ul>
+        {% endif %}
+        {% if use_apply_button %}
+            <div>
+                <a href="/node/{{school_node_id}}/{{field_name}}/application">{% trans %}Apply{% endtrans %}</a>
+            </div>
+        {% endif %}
+{% if use_container %}
+    </div>
+</details>
+{% endif %}
