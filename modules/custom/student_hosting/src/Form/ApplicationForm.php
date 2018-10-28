@@ -5,6 +5,9 @@ namespace Drupal\student_hosting\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
+use Drupal\node\Entity\Node;
+use Drupal\user\Entity\User;
+use Drupal\file\Entity\File;
 use Drupal\student_hosting\Plugin\Field\FieldFormatter\StudentHostingFormatter;
 
 /**
@@ -28,6 +31,11 @@ class ApplicationForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state, NodeInterface $node = NULL, $field = NULL) {
 
+    $form_state->setFormState([
+      'nid' => $node->id(),
+      'field' => $field,
+    ]);
+    
     $item = $node->get($field);
     $school_name = $node->getTitle();
     $field_name = $item->getFieldDefinition()->getName();
@@ -54,35 +62,39 @@ class ApplicationForm extends FormBase {
     
     if ($item->require_jc_record) {
       $form['jc_record'] = [
-        '#type' => 'file',
+        '#type' => 'managed_file',
         '#title' => t('JC Record'),
         '#description' => t(StudentHostingFormatter::JC_RECORD_DOCUMENT_DESCRIPTION),
+        '#upload_location' => 'public://application_files',
+        '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
         '#required' => TRUE
       ]; 
     }
     
-    if ($item->require_sm_approval) {
-      $form['sm_approval'] = [
-        '#type' => 'file',
-        '#title' => t('School Meeting Approval'),
-        '#description' => t(StudentHostingFormatter::SM_APPROVAL_DOCUMENT_DESCRIPTION),
-        '#required' => TRUE
-      ]; 
-    }
+    // if ($item->require_sm_approval) {
+    //   $form['sm_approval'] = [
+    //     '#type' => 'file',
+    //     '#title' => t('School Meeting Approval'),
+    //     '#description' => t(StudentHostingFormatter::SM_APPROVAL_DOCUMENT_DESCRIPTION),
+    //     '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
+    //     //'#required' => TRUE
+    //   ]; 
+    // }
     
-    if ($item->require_recommendation_letter) {
-      $form['recommendation_letter'] = [
-        '#type' => 'file',
-        '#title' => t('Recommendation Letter'),
-        '#description' => t(StudentHostingFormatter::RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION),
-        '#required' => TRUE
-      ]; 
-    }
+    // if ($item->require_recommendation_letter) {
+    //   $form['recommendation_letter'] = [
+    //     '#type' => 'file',
+    //     '#title' => t('Recommendation Letter'),
+    //     '#description' => t(StudentHostingFormatter::RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION),
+    //     '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
+    //     //'#required' => TRUE
+    //   ]; 
+    // }
     
     $form['questionnaire_header']['#markup'] =
       '<hr><h2>' . t('Questionnaire') . '</h2><p>' . t('Please answer the following questions:') . '</p>';
     
-    $questions = explode("\n", $item->questions);
+    $questions = array_filter(explode("\n", $item->questions));
     foreach ($questions as $question_id => $question) {
       $form['question_' . $question_id] = [
         '#type' => 'textfield',
@@ -140,11 +152,11 @@ class ApplicationForm extends FormBase {
    *   Object describing the current state of the form.
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $title = $form_state->getValue('title');
-    if (strlen($title) < 5) {
-      // Set an error for the form element with a key of "title".
-      $form_state->setErrorByName('title', $this->t('The title must be at least 5 characters long.'));
-    }
+    // $title = $form_state->getValue('title');
+    // if (strlen($title) < 5) {
+    //   // Set an error for the form element with a key of "title".
+    //   $form_state->setErrorByName('title', $this->t('The title must be at least 5 characters long.'));
+    // }
   }
 
   /**
@@ -158,12 +170,47 @@ class ApplicationForm extends FormBase {
    *   Object describing the current state of the form.
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    /*
-     * This would normally be replaced by code that actually does something
-     * with the title.
-     */
-    $title = $form_state->getValue('title');
-    $this->messenger()->addMessage($this->t('You specified a title of %title.', ['%title' => $title]));
+    
+    $nid = $form_state->get('nid');
+    $field = $form_state->get('field');
+    
+    $school = Node::load($nid);
+    $item = $school->get($field);
+    $program_title = $item->getFieldDefinition()->getLabel();
+    $applicant = User::load(\Drupal::currentUser()->id());
+    
+    $questionnaire = '<html>';
+    $questions = array_filter(explode("\n", $item->questions));
+    for ($i = 0; $i < sizeof($questions); $i++) {
+      $questionnaire .= '<strong>' . $questions[$i] . '</strong>';
+      $questionnaire .= '<p>' . $form_state->getValue('question_' . $i) . '</p>';
+    }
+    $questionnaire .= '</html>';
+    
+    $application = Node::create([
+      'type' => 'student_hosting_application',
+      'title' => $program_title . t(' Application from ') . $applicant->getUsername(),
+      'field_applicant' => $applicant,
+      'field_jc_record' => [ 'target_id' => self::upload_file($form_state, 'jc_record') ],
+      //'field_sm_approval' => [ 'target_id' => upload_file('sm_approval') ],
+      //'field_recommendation_letter' => [ 'target_id' => upload_file('recommendation_letter') ],
+      'field_questionnaire' => $questionnaire
+    ]);
+    
+    $application->save();
+    
+    $school->field_sh_applications->appendItem($application);
+  }
+
+  private function upload_file(FormStateInterface $form_state, $form_field_name) {
+    $form_file = $form_state->getValue($form_field_name, 0);
+    if (isset($form_file[0]) && !empty($form_file[0])) {
+      $file = File::load($form_file[0]);
+      $file->setPermanent();
+      $file->save();
+      return $file->id();
+    }
+    return NULL;
   }
 
 }
