@@ -71,25 +71,27 @@ class ApplicationForm extends FormBase {
       ]; 
     }
     
-    // if ($item->require_sm_approval) {
-    //   $form['sm_approval'] = [
-    //     '#type' => 'file',
-    //     '#title' => t('School Meeting Approval'),
-    //     '#description' => t(StudentHostingFormatter::SM_APPROVAL_DOCUMENT_DESCRIPTION),
-    //     '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
-    //     //'#required' => TRUE
-    //   ]; 
-    // }
+    if ($item->require_sm_approval) {
+      $form['sm_approval'] = [
+        '#type' => 'managed_file',
+        '#title' => t('School Meeting Approval'),
+        '#description' => t(StudentHostingFormatter::SM_APPROVAL_DOCUMENT_DESCRIPTION),
+        '#upload_location' => 'public://application_files',
+        '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
+        '#required' => TRUE
+      ]; 
+    }
     
-    // if ($item->require_recommendation_letter) {
-    //   $form['recommendation_letter'] = [
-    //     '#type' => 'file',
-    //     '#title' => t('Recommendation Letter'),
-    //     '#description' => t(StudentHostingFormatter::RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION),
-    //     '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
-    //     //'#required' => TRUE
-    //   ]; 
-    // }
+    if ($item->require_recommendation_letter) {
+      $form['recommendation_letter'] = [
+        '#type' => 'managed_file',
+        '#title' => t('Recommendation Letter'),
+        '#description' => t(StudentHostingFormatter::RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION),
+        '#upload_location' => 'public://application_files',
+        '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
+        '#required' => TRUE
+      ]; 
+    }
     
     $form['questionnaire_header']['#markup'] =
       '<hr><h2>' . t('Questionnaire') . '</h2><p>' . t('Please answer the following questions:') . '</p>';
@@ -179,27 +181,28 @@ class ApplicationForm extends FormBase {
     $program_title = $item->getFieldDefinition()->getLabel();
     $applicant = User::load(\Drupal::currentUser()->id());
     
-    $questionnaire = '<html>';
+    $questionnaire = '';
     $questions = array_filter(explode("\n", $item->questions));
     for ($i = 0; $i < sizeof($questions); $i++) {
       $questionnaire .= '<strong>' . $questions[$i] . '</strong>';
       $questionnaire .= '<p>' . $form_state->getValue('question_' . $i) . '</p>';
     }
-    $questionnaire .= '</html>';
     
     $application = Node::create([
       'type' => 'student_hosting_application',
       'title' => $program_title . t(' Application from ') . $applicant->getUsername(),
       'field_applicant' => $applicant,
       'field_jc_record' => [ 'target_id' => self::upload_file($form_state, 'jc_record') ],
-      //'field_sm_approval' => [ 'target_id' => upload_file('sm_approval') ],
-      //'field_recommendation_letter' => [ 'target_id' => upload_file('recommendation_letter') ],
-      'field_questionnaire' => $questionnaire
+      'field_sm_approval' => [ 'target_id' => self::upload_file($form_state, 'sm_approval') ],
+      'field_recommendation_letter' => [ 'target_id' => self::upload_file($form_state, 'recommendation_letter') ],
+      'field_questionnaire' => [ 'format' => 'basic_html', 'value' => $questionnaire ]
     ]);
     
     $application->save();
     
     $school->field_sh_applications->appendItem($application);
+    
+    $form_state->setRedirect('student_hosting.application_confirmation', [ 'node' => $application->id() ]);
   }
 
   private function upload_file(FormStateInterface $form_state, $form_field_name) {
