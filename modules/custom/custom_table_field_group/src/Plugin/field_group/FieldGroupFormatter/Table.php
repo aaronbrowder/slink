@@ -142,8 +142,8 @@ class Table extends FieldGroupFormatterBase {
     $fields = Element::children($element);
     $rows = [];
     foreach ($fields as $key) {
-      $title = $element[$key]['#title'];
-      if (!empty($title)) {
+      if (!empty($element[$key]['#title'])) {
+        $title = $element[$key]['#title'];
         if ($title == 'Birthdate') {
           $title = 'Age';
         }
