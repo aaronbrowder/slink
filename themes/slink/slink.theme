@@ -1,0 +1,9 @@
+<?php
+
+/**
+* Implements hook_preprocess_node
+*/
+function slink_preprocess_node(&$variables) {
+  $date = $variables['node']->getCreatedTime();
+  $variables['date'] = \Drupal::service('date.formatter')->format($date, 'short');
+}

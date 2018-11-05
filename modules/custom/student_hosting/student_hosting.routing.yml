@@ -8,9 +8,10 @@ student_hosting.application_form:
     _permission: 'access content'
     
 student_hosting.application_confirmation:
-  path: 'application-confirmation'
+  path: 'node/{node}/confirmation'
   defaults:
     _controller: '\Drupal\student_hosting\Form\ConfirmationController::content'
     _title: 'Application Confirmation'
   requirements:
     _permission: 'access content'
+    

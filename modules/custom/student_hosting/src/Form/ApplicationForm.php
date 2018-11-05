@@ -56,49 +56,60 @@ class ApplicationForm extends FormBase {
     ];
     
     if ($item->require_jc_record || $item->require_sm_approval || $item->require_sm_approval) {
-      $form['documents_header']['#markup'] =
-        '<hr><h2>' . t('Required Documents') . '</h2><p>' . t('Please upload the following documents:') . '</p>'; 
+      
+      $form['documents'] = [
+        '#type' => 'details',
+        '#title' => 'Required Documents',
+        '#open' => TRUE
+      ];
+      
+      $form['documents']['description']['#markup'] = t('Please upload the following documents:'); 
+      
+      if ($item->require_jc_record) {
+        $form['documents']['jc_record'] = [
+          '#type' => 'managed_file',
+          '#title' => t('JC Record'),
+          '#description' => t(StudentHostingFormatter::JC_RECORD_DOCUMENT_DESCRIPTION),
+          '#upload_location' => 'public://application_files',
+          '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
+          '#required' => TRUE
+        ]; 
+      }
+      
+      if ($item->require_sm_approval) {
+        $form['documents']['sm_approval'] = [
+          '#type' => 'managed_file',
+          '#title' => t('School Meeting Approval'),
+          '#description' => t(StudentHostingFormatter::SM_APPROVAL_DOCUMENT_DESCRIPTION),
+          '#upload_location' => 'public://application_files',
+          '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
+          '#required' => TRUE
+        ]; 
+      }
+      
+      if ($item->require_recommendation_letter) {
+        $form['documents']['recommendation_letter'] = [
+          '#type' => 'managed_file',
+          '#title' => t('Recommendation Letter'),
+          '#description' => t(StudentHostingFormatter::RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION),
+          '#upload_location' => 'public://application_files',
+          '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
+          '#required' => TRUE
+        ]; 
+      }
     }
     
-    if ($item->require_jc_record) {
-      $form['jc_record'] = [
-        '#type' => 'managed_file',
-        '#title' => t('JC Record'),
-        '#description' => t(StudentHostingFormatter::JC_RECORD_DOCUMENT_DESCRIPTION),
-        '#upload_location' => 'public://application_files',
-        '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
-        '#required' => TRUE
-      ]; 
-    }
-    
-    if ($item->require_sm_approval) {
-      $form['sm_approval'] = [
-        '#type' => 'managed_file',
-        '#title' => t('School Meeting Approval'),
-        '#description' => t(StudentHostingFormatter::SM_APPROVAL_DOCUMENT_DESCRIPTION),
-        '#upload_location' => 'public://application_files',
-        '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
-        '#required' => TRUE
-      ]; 
-    }
-    
-    if ($item->require_recommendation_letter) {
-      $form['recommendation_letter'] = [
-        '#type' => 'managed_file',
-        '#title' => t('Recommendation Letter'),
-        '#description' => t(StudentHostingFormatter::RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION),
-        '#upload_location' => 'public://application_files',
-        '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
-        '#required' => TRUE
-      ]; 
-    }
-    
-    $form['questionnaire_header']['#markup'] =
-      '<hr><h2>' . t('Questionnaire') . '</h2><p>' . t('Please answer the following questions:') . '</p>';
+    $form['questionnaire'] = [
+        '#type' => 'details',
+        '#title' => 'Questionnaire',
+        '#open' => TRUE
+      ];
+      
+    $form['questionnaire']['description']['#markup'] = t('Please answer the following questions:'); 
     
     $questions = array_filter(explode("\n", $item->questions));
     foreach ($questions as $question_id => $question) {
-      $form['question_' . $question_id] = [
+      $form['questionnaire']['question_' . $question_id] = [
         '#type' => 'textfield',
         '#title' => t($question),
         '#required' => TRUE,
@@ -190,8 +201,9 @@ class ApplicationForm extends FormBase {
     
     $application = Node::create([
       'type' => 'student_hosting_application',
-      'title' => $program_title . t(' Application from ') . $applicant->getUsername(),
+      'title' => $program_title . t(' Application '),
       'field_applicant' => $applicant,
+      'field_recipient_school' => $school,
       'field_jc_record' => [ 'target_id' => self::upload_file($form_state, 'jc_record') ],
       'field_sm_approval' => [ 'target_id' => self::upload_file($form_state, 'sm_approval') ],
       'field_recommendation_letter' => [ 'target_id' => self::upload_file($form_state, 'recommendation_letter') ],
@@ -199,8 +211,6 @@ class ApplicationForm extends FormBase {
     ]);
     
     $application->save();
-    
-    $school->field_sh_applications->appendItem($application);
     
     $form_state->setRedirect('student_hosting.application_confirmation', [ 'node' => $application->id() ]);
   }

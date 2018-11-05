@@ -3,6 +3,23 @@
 use \Drupal\Core\Entity\EntityInterface;
 use \Drupal\node\Entity\Node;
 use \Drupal\node\NodeInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Access\AccessResult;
+
+/**
+ * Implements hook_node_access().
+ */
+function student_hosting_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  // Applications can only be accessed by their author and the school admin recipient.
+  if ($node->gettype() == 'student_hosting_application') {
+    $is_author= $account->id() == $node->getOwner()->id();
+    $is_school_admin = $account->id() == $node->get('field_recipient_school')->entity->getOwner()->id();
+    if (!$is_author && !$is_school_admin) {
+      return AccessResult::forbidden()->cachePerPermissions(); 
+    }
+  }
+  return AccessResult::neutral()->cachePerPermissions();
+}
 
 /**
  * Implements hook_theme().
