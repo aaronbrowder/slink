@@ -22,6 +22,16 @@ function student_hosting_node_access(NodeInterface $node, $op, AccountInterface 
 }
 
 /**
+ * Implements hook_form_alter().
+ */
+// function student_hosting_form_alter(&$form, &$form_state, $form_id) {
+//   // add custom css class to form submit buttom
+//   if ($form_id == 'student_hosting_application_form') {
+//     $form['actions']['submit']['#attributes']['class'][] = 'slink-button-apply';
+//   }  
+// }
+
+/**
  * Implements hook_theme().
  */
 function student_hosting_theme() {

@@ -128,6 +128,9 @@ class ApplicationForm extends FormBase {
     $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
+      '#attributes' => [
+        'class' => [ 'slink-button-primary' ]
+      ]
     ];
 
     return $form;

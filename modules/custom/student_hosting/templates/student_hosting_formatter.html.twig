@@ -76,7 +76,10 @@
         {% endif %}
         {% if use_apply_button %}
             <div>
-                <a href="/node/{{school_node_id}}/{{field_name}}/application">{% trans %}Apply{% endtrans %}</a>
+                <br>
+                <a class="slink-button-primary" href="/node/{{school_node_id}}/{{field_name}}/application">
+                    {% trans %}Apply{% endtrans %}
+                </a>
             </div>
         {% endif %}
 {% if use_container %}

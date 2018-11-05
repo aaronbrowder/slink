@@ -7,6 +7,7 @@ base theme: bartik
 # Defines libraries group in which we can add css/js.
 libraries:
   - slink/global-styling
+  - slink/fonts
 # Regions
 regions:
   header: Header
