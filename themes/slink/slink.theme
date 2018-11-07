@@ -7,3 +7,7 @@ function slink_preprocess_node(&$variables) {
   $date = $variables['node']->getCreatedTime();
   $variables['date'] = \Drupal::service('date.formatter')->format($date, 'short');
 }
+
+function slink_form_search_block_form_alter(&$form, &$form_state) {
+  $form['keys']['#attributes']['placeholder'][] = t('Search');
+}

@@ -2,7 +2,9 @@ global-styling:
   css:
     component:
       css/style.css: {}
-      
+  js:
+    js/script.js: {}
+    
 fonts:
   css:
     theme:

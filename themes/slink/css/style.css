@@ -31,7 +31,7 @@ h1, h2, summary, .slink-button-primary {
 }
 
 h1 {
-  font-size: 2.2em;
+  font-size: 2.1em;
 }
 
 h2 {
@@ -40,6 +40,7 @@ h2 {
 
 h2 a:hover, h2 a:focus {
   border: none;
+  color: #026aa7;
 }
 
 details {
@@ -50,7 +51,7 @@ summary {
   color: #000;
   text-shadow: none;
   font-weight: normal;
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 
 summary:focus {
@@ -62,7 +63,7 @@ details > .details-wrapper {
 }
 
 .page-title {
-  font-size: 2.3em;
+  font-size: 2.1em;
   margin: 0.5em 0;
 }
 
@@ -70,9 +71,23 @@ details > .details-wrapper {
   font-size: 1.4em;
 }
 
+#header.header {
+  background-color: #007ac6;
+  background-image: none;
+  /*background-image: url("/themes/slink/background.png");*/
+}
+
+.site-branding__text {
+  display: none;
+}
+
 .node--view-mode-teaser {
   margin-bottom: 15px;
   padding-bottom: 10px;
+}
+
+.node--view-mode-teaser p {
+  margin: 0;
 }
 
 .node--view-mode-teaser .node__content {
@@ -81,36 +96,79 @@ details > .details-wrapper {
 
 .field--type-entity-reference {
   margin: 0;
+  font-family: inherit;
 }
 
-.sidebar .block .content {
-  font-size: 1em;
+.field--name-field-questionnaire p {
+  margin: 0;
+  margin-bottom: 0.5em;
 }
 
-.sidebar .block.menu--school-admin {
+.field--name-user-picture {
+  float: left;
+  margin-right: 1em;
+  margin-top: 0.25em;
+}
+
+#sidebar-first .block .content {
+  margin: 0;
+}
+
+#sidebar-first .block {
   padding: 0;
+  margin: 0;
   background: none;
   border: none;
 }
 
-.menu--school-admin .menu {
+#sidebar-first .menu {
   padding: 0;
 }
 
-.menu--school-admin .menu-item a {
+#sidebar-first .menu-item a {
   display: block;
   margin: 0.2em 0;
   padding: 0.5em 1em;
   border-radius: 4px;
   background: #fff;
-  border: 1px solid #c5c5c5;
+  border: 1px solid #bbb;
   border-top-color: #ddd;
   border-left-color: #ddd;
+  font-size: 1.05em;
 }
 
-.menu--school-admin .menu-item a:hover {
+#sidebar-first .menu-item a:hover {
   background: #f2f2f2;
   color: #026aa7;
+}
+
+#sidebar-first .search-block-form {
+  margin: 10px 0;
+}
+
+#sidebar-first details {
+  border-color: transparent;
+  margin: 0;
+}
+
+.form-search {
+  width: calc(100% - 60px);
+}
+
+@media all and (min-width: 560px) {
+  #sidebar-first {
+    float: none;
+  }
+}
+
+@media all and (min-width: 851px) {
+  #sidebar-first {
+    margin-left: 0;
+    float: left;
+  }
+  .layout-sidebar-first .main-content {
+    margin-left: 0;
+  }
 }
 
 .slink-button-primary {
