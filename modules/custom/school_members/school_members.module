@@ -2,6 +2,7 @@
 
 use Drupal\user\UserInterface;
 use Drupal\user\Entity\User;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_ENTITY_TYPE_presave().
@@ -21,4 +22,14 @@ function school_members_user_presave(UserInterface $user) {
     }
     // Make sure the profile email field is synced with the core email field
     $user->set('field_profile_email', $user->getEmail());
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function school_members_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    // disable advanced search
+    if ($form_id == 'search_form') {
+        $form['advanced'] = NULL;
+    }
 }
