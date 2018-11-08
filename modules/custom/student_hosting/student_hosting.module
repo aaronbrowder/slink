@@ -1,6 +1,7 @@
 <?php
 
 use \Drupal\Core\Entity\EntityInterface;
+use \Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use \Drupal\node\Entity\Node;
 use \Drupal\node\NodeInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -22,14 +23,15 @@ function student_hosting_node_access(NodeInterface $node, $op, AccountInterface 
 }
 
 /**
- * Implements hook_form_alter().
+ * Implements hook_entity_view().
  */
-// function student_hosting_form_alter(&$form, &$form_state, $form_id) {
-//   // add custom css class to form submit buttom
-//   if ($form_id == 'student_hosting_application_form') {
-//     $form['actions']['submit']['#attributes']['class'][] = 'slink-button-apply';
-//   }  
-// }
+function student_hosting_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($entity->bundle() == 'student_hosting_application' && $view_mode == 'full') {
+    // when an application is viewed, mark it as read
+    $entity->set('field_read', TRUE);
+    $entity->save();
+  }
+}
 
 /**
  * Implements hook_theme().

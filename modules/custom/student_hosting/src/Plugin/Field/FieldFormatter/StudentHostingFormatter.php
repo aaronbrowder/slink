@@ -28,7 +28,7 @@ class StudentHostingFormatter extends FormatterBase {
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
-
+    
     $school_name = 'School';
     $school_node_id = 0;
     $node = \Drupal::routeMatch()->getParameter('node');

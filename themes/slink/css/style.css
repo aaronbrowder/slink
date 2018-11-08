@@ -229,3 +229,7 @@ details > .details-wrapper {
   background: #0087db !important;
   border: none;
 }
+
+.application-read {
+  font-weight: normal;
+}
