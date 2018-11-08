@@ -115,14 +115,44 @@ class StudentHostingWidget extends WidgetBase  {
         'max' => 99
       ]
     ];
-    $element['description'] = [
-      '#type' => 'text_format',
-      '#allowed_formats' => [
-        'full_html'
-      ],
-      '#title' => t('Application Instructions'),
-      '#default_value' => isset($item->description) ? $item->description : '',
+    $element['require_jc_record'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Require JC Record'),
+      '#description' => t('Turn this on to require applicants to submit their JC record for the current year.'),
+      '#default_value' => isset($item->require_jc_record) ? $item->require_jc_record : '',
       '#states' => $states,
+    ];
+    $element['require_sm_approval'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Require School Meeting Approval'),
+      '#description' => t('Turn this on to require applicants get approval from their School Meeting before applying.'),
+      '#default_value' => isset($item->require_sm_approval) ? $item->require_sm_approval : '',
+      '#states' => $states,
+    ];
+    $element['require_recommendation_letter'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Require Recommendation Letter'),
+      '#description' => t('Turn this on to require applicants to submit a letter of recommendation from a staff member.'),
+      '#default_value' => isset($item->require_recommendation_letter) ? $item->require_recommendation_letter : '',
+      '#states' => $states,
+    ];
+    $element['expectations'] = [
+      '#type' => 'textarea',
+      '#title' => t('Expectations'),
+      '#description' => t('Briefly describe the duties the student will be expected to perform, including things like democratic participation and role modeling.'),
+      '#default_value' => isset($item->expectations) ? $item->expectations : '',
+      '#states' => $states,
+    ];
+    $element['questions'] = [
+      '#type' => 'textarea',
+      '#title' => t('Questionnaire'),
+      '#description' => t('List questions you would like the applicant to answer, one question per line.'),
+      '#default_value' => isset($item->questions) ? $item->questions : '',
+      '#states' => $states,
+      '#required' => TRUE,
+      '#attributes' => [
+        'rows' => 12
+      ]
     ];
 
     return $element;
@@ -132,13 +162,13 @@ class StudentHostingWidget extends WidgetBase  {
    * {@inheritdoc}
    */
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
-    foreach ($values as &$value) {
-      if (count($value['description'])) {
-        $value['description'] = $value['description']['value'];
-      } else {
-        $value['description'] = $value['description'] !== '' ? $value['description'] : '0';
-      }
-    }
+    // foreach ($values as &$value) {
+    //   if (count($value['description'])) {
+    //     $value['description'] = $value['description']['value'];
+    //   } else {
+    //     $value['description'] = $value['description'] !== '' ? $value['description'] : '0';
+    //   }
+    // }
     return $values;
   }
   

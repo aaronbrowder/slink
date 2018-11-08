@@ -1,5 +1,38 @@
 <?php
 
+use \Drupal\Core\Entity\EntityInterface;
+use \Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use \Drupal\node\Entity\Node;
+use \Drupal\node\NodeInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Access\AccessResult;
+
+/**
+ * Implements hook_node_access().
+ */
+function student_hosting_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  // Applications can only be accessed by their author and the school admin recipient.
+  if ($node->gettype() == 'student_hosting_application') {
+    $is_author= $account->id() == $node->getOwner()->id();
+    $is_school_admin = $account->id() == $node->get('field_recipient_school')->entity->getOwner()->id();
+    if (!$is_author && !$is_school_admin) {
+      return AccessResult::forbidden()->cachePerPermissions(); 
+    }
+  }
+  return AccessResult::neutral()->cachePerPermissions();
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function student_hosting_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($entity->bundle() == 'student_hosting_application' && $view_mode == 'full') {
+    // when an application is viewed, mark it as read
+    $entity->set('field_read', TRUE);
+    $entity->save();
+  }
+}
+
 /**
  * Implements hook_theme().
  */
@@ -7,19 +40,29 @@ function student_hosting_theme() {
   return [
     'student_hosting_formatter' => [
       'variables' => [
+        'use_container' => FALSE,
+        'use_apply_button' => FALSE,
+        'field_name' => NULL,
         'title' => NULL,
-        'description' => NULL,
-        'isWage' => FALSE,
-        'fee' => 0,
-        'wage' => 0,
+        'cost' => 0,
         'currency' => NULL,
         'min_age' => 0,
         'min_years_enrolled' => 0,
         'has_eligibility_requirements' => FALSE,
         'program_parameters' => NULL,
-        'school_name' => NULL
+        'expectations' => NULL,
+        'has_expectations' => FALSE,
+        'school_name' => NULL,
+        'school_node_id' => 0,
+        'require_jc_record' => FALSE,
+        'require_sm_approval' => FALSE,
+        'require_recommendation_letter' => FALSE,
+        'has_required_documents' => FALSE,
+        'jc_record_document_description' => NULL,
+        'sm_approval_document_description' => NULL,
+        'recommendation_letter_document_description' => NULL
       ],
-      'template' => 'student-hosting-formatter',
+      'template' => 'student_hosting_formatter',
     ],
   ];
 }

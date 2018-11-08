@@ -128,6 +128,28 @@ function hook_user_format_name_alter(&$name, $account) {
 }
 
 /**
+ * Alter whether the user mail field is required.
+ *
+ * By default a user with permission 'administer users' may create and edit
+ * a user account without setting the mail field, but a user without that
+ * permission must set the mail field. This hook can be user to allow
+ * other users to omit the mail field, or to require the mail field for
+ * all users.
+ *
+ * @param boolean $required
+ *   True if the mail field is required.
+ *
+ * @param \Drupal\user\UserInterface $user
+ *   User editing the account.
+ */
+function hook_user_mail_required_alter(&$required, $user) {
+  // Check for a new permission that is defined in custom code.
+  if ($user->hasPermission('allow empty user mail')) {
+    $required = FALSE;
+  }
+}
+
+/**
  * The user just logged in.
  *
  * @param object $account

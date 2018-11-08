@@ -1,0 +1,7 @@
+school_members.my_school:
+  path: 'my-school'
+  defaults:
+    _controller: '\Drupal\school_members\Controller\MySchoolController::content'
+    _title: 'My School'
+  requirements:
+    _permission: 'access content'

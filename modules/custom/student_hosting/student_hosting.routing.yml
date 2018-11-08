@@ -1,0 +1,17 @@
+
+student_hosting.application_form:
+  path: 'node/{node}/{field}/application'
+  defaults:
+    _form:  '\Drupal\student_hosting\Form\ApplicationForm'
+    _title_callback: '\Drupal\student_hosting\Form\ApplicationForm::title'
+  requirements:
+    _permission: 'access content'
+    
+student_hosting.application_confirmation:
+  path: 'node/{node}/confirmation'
+  defaults:
+    _controller: '\Drupal\student_hosting\Form\ConfirmationController::content'
+    _title: 'Application Confirmation'
+  requirements:
+    _permission: 'access content'
+    

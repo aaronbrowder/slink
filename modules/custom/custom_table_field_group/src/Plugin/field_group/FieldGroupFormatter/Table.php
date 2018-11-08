@@ -143,12 +143,16 @@ class Table extends FieldGroupFormatterBase {
     $rows = [];
     foreach ($fields as $key) {
       if (!empty($element[$key]['#title'])) {
+        $title = $element[$key]['#title'];
+        if ($title == 'Birthdate') {
+          $title = 'Age';
+        }
         $rows[] = [
           'no_striping' => TRUE,
           'data' => [
             [
               'header' => TRUE,
-              'data' => render($element[$key]['#title'])
+              'data' => render($title)
             ],
             render($element[$key])
           ]
