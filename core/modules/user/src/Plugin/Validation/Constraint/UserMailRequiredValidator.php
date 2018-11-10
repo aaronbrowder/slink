@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraint;
  * Checks if the user's email address is provided if required.
  *
  * The user mail field is NOT required if account originally had no mail set
- * and the user performing the edit has appropriate permission.
+ * and the user performing the edit has 'administer users' permission.
  * This allows users without email address to be edited and deleted.
  */
 class UserMailRequiredValidator extends ConstraintValidator {
@@ -29,7 +29,7 @@ class UserMailRequiredValidator extends ConstraintValidator {
       $existing_value = $account_unchanged->getEmail();
     }
 
-    $required = $existing_value || user_mail_required(\Drupal::currentUser());
+    $required = !(!$existing_value && \Drupal::currentUser()->hasPermission('administer users'));
 
     if ($required && (!isset($items) || $items->isEmpty())) {
       $this->context->addViolation($constraint->message, ['@name' => $account->getFieldDefinition('mail')->getLabel()]);
