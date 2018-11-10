@@ -4,30 +4,30 @@
     <div class="details-wrapper">
 {% endif %}
         {% if field_name == 'field_student_guest_program' %}
-            
+            {% trans %}
                 {{school_name}} is accepting applications for student guests. If you are a student at a Slink member school, you can come visit {{school_name}} for a number of weeks, staying with a host family and going to school as if you were enrolled here.
-            
+            {% endtrans %}
         {% endif %}
         {% if field_name == 'field_student_ambassador_program' %}
-            
+            {% trans %}
                 {{school_name}} is accepting applications for student ambassadors. If you have been a student at a Slink member school for a long time and have a lot of experience, we might be interested in hiring you as a student ambassador. As an ambassador you would stay with a host family and come to {{school_name}} as if you were enrolled here. You would be expected to help our school in some way in exchange for wages.
-            
+            {% endtrans %}
         {% endif %}
         {% if has_eligibility_requirements %}
             <h2>{% trans %}Am I eligible?{% endtrans %}</h2>
             <ul>
                 {% if min_age > 0 %}
                     <li>
-                        
+                        {% trans %}
                             You must be at least {{min_age}} years old.
-                        
+                        {% endtrans %}
                     </li>
                 {% endif %}
                 {% if min_years_enrolled > 0 %}
                     <li>
-                        
+                        {% trans %}
                             You must have been enrolled in your school for at least {{min_years_enrolled}} year(s).
-                        
+                        {% endtrans %}
                     </li>
                 {% endif %}
             </ul>
@@ -38,10 +38,10 @@
             {% if field_name == 'field_student_guest_program' %}
                 {% if cost > 0 %}
                     <li>
-                        
+                        {% trans %}
                             You or your school must pay a weekly fee of {{cost}} ({{currency}}). This money
                             pays for your food and housing, and helps cover {{school_name}}'s operating costs.
-                        
+                        {% endtrans %}
                     </li>
                 {% endif %}
             {% endif %}
@@ -49,9 +49,9 @@
                 <li>{% trans %}You don't have to worry about paying for food or housing.{% endtrans %}</li>
                 {% if cost > 0 %}
                     <li>
-                        
+                        {% trans %}
                             You will receive a weekly wage of {{cost}} ({{currency}}) for your services.
-                        
+                        {% endtrans %}
                     </li>
                 {% endif %}
             {% endif %}

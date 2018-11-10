@@ -569,7 +569,7 @@ function user_login_finalize(UserInterface $account) {
 /**
  * Implements hook_user_login().
  */
-function user_user_login($account) {
+function user_user_login(UserInterface $account) {
   // Reset static cache of default variables in template_preprocess() to reflect
   // the new user.
   drupal_static_reset('template_preprocess');
@@ -578,7 +578,7 @@ function user_user_login($account) {
 /**
  * Implements hook_user_logout().
  */
-function user_user_logout($account) {
+function user_user_logout(AccountInterface $account) {
   // Reset static cache of default variables in template_preprocess() to reflect
   // the new user.
   drupal_static_reset('template_preprocess');
@@ -1421,19 +1421,4 @@ function template_preprocess_user(&$variables) {
   foreach (Element::children($variables['elements']) as $key) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
-}
-
-/**
- * Determine if the user account 'mail' field is required.
- *
- * @param \Drupal\user\UserInterface $user
- *   User editing the account.
- *
- * @return boolean True if the mail field is required.
- */
-function user_mail_required(AccountInterface $user) {
-  $required = !$user->hasPermission('administer users');
-  \Drupal::moduleHandler()->alter('user_mail_required', $required, $user);
-
-  return $required;
 }

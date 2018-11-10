@@ -5,6 +5,9 @@
  * Hooks provided by the User module.
  */
 
+use Drupal\Core\Session\AccountInterface;
+use Drupal\user\UserInterface;
+
 /**
  * @addtogroup hooks
  * @{
@@ -28,7 +31,7 @@
  *
  * @param array $edit
  *   The array of form values submitted by the user.
- * @param \Drupal\Core\Session\AccountInterface $account
+ * @param \Drupal\user\UserInterface $account
  *   The user object on which the operation is being performed.
  * @param string $method
  *   The account cancellation method.
@@ -36,7 +39,7 @@
  * @see user_cancel_methods()
  * @see hook_user_cancel_methods_alter()
  */
-function hook_user_cancel($edit, $account, $method) {
+function hook_user_cancel($edit, UserInterface $account, $method) {
   switch ($method) {
     case 'user_cancel_block_unpublish':
       // Unpublish nodes (current revisions).
@@ -120,7 +123,7 @@ function hook_user_cancel_methods_alter(&$methods) {
  * @see \Drupal\Core\Session\AccountInterface::getDisplayName()
  * @see sanitization
  */
-function hook_user_format_name_alter(&$name, $account) {
+function hook_user_format_name_alter(&$name, AccountInterface $account) {
   // Display the user's uid instead of name.
   if ($account->id()) {
     $name = t('User @uid', ['@uid' => $account->id()]);
@@ -128,34 +131,12 @@ function hook_user_format_name_alter(&$name, $account) {
 }
 
 /**
- * Alter whether the user mail field is required.
- *
- * By default a user with permission 'administer users' may create and edit
- * a user account without setting the mail field, but a user without that
- * permission must set the mail field. This hook can be user to allow
- * other users to omit the mail field, or to require the mail field for
- * all users.
- *
- * @param boolean $required
- *   True if the mail field is required.
- *
- * @param \Drupal\user\UserInterface $user
- *   User editing the account.
- */
-function hook_user_mail_required_alter(&$required, $user) {
-  // Check for a new permission that is defined in custom code.
-  if ($user->hasPermission('allow empty user mail')) {
-    $required = FALSE;
-  }
-}
-
-/**
  * The user just logged in.
  *
- * @param object $account
+ * @param \Drupal\user\UserInterface $account
  *   The user object on which the operation was just performed.
  */
-function hook_user_login($account) {
+function hook_user_login(UserInterface $account) {
   $config = \Drupal::config('system.date');
   // If the user has a NULL time zone, notify them to set a time zone.
   if (!$account->getTimezone() && $config->get('timezone.user.configurable') && $config->get('timezone.user.warn')) {
@@ -173,10 +154,10 @@ function hook_user_login($account) {
 /**
  * The user just logged out.
  *
- * @param $account
+ * @param \Drupal\Core\Session\AccountInterface $account
  *   The user object on which the operation was just performed.
  */
-function hook_user_logout($account) {
+function hook_user_logout(AccountInterface $account) {
   db_insert('logouts')
     ->fields([
       'uid' => $account->id(),

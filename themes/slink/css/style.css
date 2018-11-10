@@ -74,6 +74,7 @@ details > .details-wrapper {
 #header.header {
   background-color: #007ac6;
   background-image: none;
+  padding: 10px 0;
   /*background-image: url("/themes/slink/background.png");*/
 }
 
