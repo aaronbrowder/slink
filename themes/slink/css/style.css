@@ -78,6 +78,10 @@ details > .details-wrapper {
   /*background-image: url("/themes/slink/background.png");*/
 }
 
+#header.header img {
+  height: 45px;
+}
+
 .site-branding__text {
   display: none;
 }
