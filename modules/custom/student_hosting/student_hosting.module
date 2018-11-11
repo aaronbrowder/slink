@@ -42,7 +42,7 @@ function student_hosting_mail($key, &$message, $params) {
       $message['from'] = \Drupal::config('system.site')->get('mail');
       $message['subject'] = $params['applicant_name'] . ' submitted an application for your ' . $params['program_title'];
       $message['body'][] = $params['applicant_name'] . ' has submitted an application for your ' . $params['program_title'] . '.'
-        . ' <a href="http://slinkonline.com/node/' . $params['application_nid'] . '">Click here</a> to view the application.';
+        . ' Follow this link to view the application: http://slinkonline.com/node/' . $params['application_nid'];
       break;
   }
 }
