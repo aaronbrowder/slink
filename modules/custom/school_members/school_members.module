@@ -33,3 +33,11 @@ function school_members_form_alter(&$form, FormStateInterface $form_state, $form
         $form['advanced'] = NULL;
     }
 }
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function school_members_entity_type_build(array &$entity_types) {
+  $entity_types['user']
+    ->setFormClass('edit_school', 'Drupal\user\ProfileForm');
+}

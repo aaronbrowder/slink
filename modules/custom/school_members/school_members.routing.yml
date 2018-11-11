@@ -2,6 +2,13 @@ school_members.my_school:
   path: 'my-school'
   defaults:
     _controller: '\Drupal\school_members\Controller\MySchoolController::content'
-    _title: 'My School'
   requirements:
     _permission: 'access content'
+    
+school_members.edit_user_school:
+  path: 'user/{user}/edit/school'
+  defaults:
+    _entity_form: user.edit_school
+    _title_callback: '\Drupal\school_members\Controller\EditUserSchoolController::title'
+  requirements:
+    _role: 'administrator'
