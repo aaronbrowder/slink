@@ -9,6 +9,7 @@ use Drupal\node\Entity\Node;
 use Drupal\user\Entity\User;
 use Drupal\file\Entity\File;
 use Drupal\student_hosting\Plugin\Field\FieldFormatter\StudentHostingFormatter;
+use Drupal\Core\Mail\Plugin\Mail\PhpMail;
 
 /**
  * Implements the ApplicationForm form controller.
@@ -215,6 +216,9 @@ class ApplicationForm extends FormBase {
     
     $application->save();
     
+    $admin_email = $school->getOwner()->getEmail();
+    self::send_email($admin_email, $applicant->getDisplayName(), $program_title, $application->id());
+    
     $form_state->setRedirect('student_hosting.application_confirmation', [ 'node' => $application->id() ]);
   }
 
@@ -227,6 +231,24 @@ class ApplicationForm extends FormBase {
       return $file->id();
     }
     return NULL;
+  }
+  
+  private function send_email($admin_email, $applicant_name, $program_title, $application_nid) {
+    $send_mail = new PhpMail();
+    $from = 'admin@slinkonline.com';
+    $message['headers'] = [
+      'content-type' => 'text/html',
+      'MIME-Version' => '1.0',
+      'reply-to' => $from,
+      'from' => 'Slink <' . $from . '>'
+    ];
+    $message['to'] = $admin_email;
+    $message['subject'] = $applicant_name . ' submitted an application for your ' . $program_title;
+    
+    $message['body'] = $applicant_name . ' has submitted an application for your ' . $program_title . '.';
+      ' <a href="http://slinkonline.com/node/' . $application_nid . '">Click here</a> to view the application.';
+    
+    $send_mail->mail($message);
   }
 
 }
