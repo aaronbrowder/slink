@@ -1,11 +1,28 @@
 <?php
 
-use \Drupal\Core\Entity\EntityInterface;
-use \Drupal\Core\Entity\Display\EntityViewDisplayInterface;
-use \Drupal\node\Entity\Node;
-use \Drupal\node\NodeInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\node\Entity\Node;
+use Drupal\user\Entity\User;
+use Drupal\node\NodeInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
+use Drupal\views\Views;
+use Drupal\Core\Cache\Cache;
+
+/**
+* Implements hook_mail().
+*/
+function student_hosting_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'application_submitted':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = $params['applicant_name'] . ' submitted an application for your ' . $params['program_title'];
+      $message['body'][] = $params['applicant_name'] . ' has submitted an application for your ' . $params['program_title'] . '.'
+        . ' Follow this link to view the application: http://slinkonline.com/node/' . $params['application_nid'];
+      break;
+  }
+}
 
 /**
  * Implements hook_node_access().
@@ -26,24 +43,40 @@ function student_hosting_node_access(NodeInterface $node, $op, AccountInterface 
  * Implements hook_entity_view().
  */
 function student_hosting_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
-  if ($entity->bundle() == 'student_hosting_application' && $view_mode == 'full') {
-    // when an application is viewed, mark it as read
+  // when an application is viewed, mark it as read
+  if ($entity->bundle() == 'student_hosting_application' && $view_mode == 'full' && !$entity->field_read->value) {
     $entity->set('field_read', TRUE);
     $entity->save();
   }
 }
 
 /**
-* Implements hook_mail().
-*/
-function student_hosting_mail($key, &$message, $params) {
-  switch ($key) {
-    case 'application_submitted':
-      $message['from'] = \Drupal::config('system.site')->get('mail');
-      $message['subject'] = $params['applicant_name'] . ' submitted an application for your ' . $params['program_title'];
-      $message['body'][] = $params['applicant_name'] . ' has submitted an application for your ' . $params['program_title'] . '.'
-        . ' Follow this link to view the application: http://slinkonline.com/node/' . $params['application_nid'];
-      break;
+ * Implements hook_preprocess_HOOK().
+ */
+function student_hosting_preprocess_menu(&$vars) {
+  // disable caching the school admin menu so it can show the current number of unread applications
+  if ($vars['menu_name'] == 'school-admin') {
+    $vars['#cache']['max-age'] = 0; 
+  }
+}
+
+/**
+ * Implements hook_link_alter().
+ */
+function student_hosting_link_alter(&$variables) {
+  // on Applications menu item, show number of unread applications in parentheses
+  if ($variables['text'] == 'Applications') {
+    $current_user = User::load(Drupal::currentUser()->id());
+    $school = $current_user->field_school->entity;
+    $application_nids = \Drupal::entityQuery('node')
+      ->condition('type', 'student_hosting_application')
+      ->condition('field_read', FALSE)
+      ->condition('field_recipient_school.entity.nid', $school->id())
+      ->execute();
+    $count = count($application_nids);
+    if ($count > 0) {
+      $variables['text'] = $variables['text'] . ' (' . $count . ')'; 
+    }
   }
 }
 
