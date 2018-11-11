@@ -250,21 +250,6 @@ class ApplicationForm extends FormBase {
     else {
       // success behavior
     }
-    // $send_mail = new PhpMail();
-    // $from = 'admin@slinkonline.com';
-    // $message['headers'] = [
-    //   'content-type' => 'text/html',
-    //   'MIME-Version' => '1.0',
-    //   'reply-to' => $from,
-    //   'from' => 'Slink <' . $from . '>'
-    // ];
-    // $message['to'] = $admin_email;
-    // $message['subject'] = $applicant_name . ' submitted an application for your ' . $program_title;
-    
-    // $message['body'] = $applicant_name . ' has submitted an application for your ' . $program_title . '.';
-    //   ' <a href="http://slinkonline.com/node/' . $application_nid . '">Click here</a> to view the application.';
-    
-    // $send_mail->mail($message);
   }
 
 }
