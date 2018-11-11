@@ -1,6 +1,12 @@
 services:
+  
   school_members.event_subscriber:
     class: Drupal\school_members\EventSubscriber\RedirectAnonymousSubscriber
     arguments: []
     tags:
       - {name: event_subscriber}
+      
+  school_members.route_subscriber:
+    class: Drupal\school_members\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
