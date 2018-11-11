@@ -234,21 +234,37 @@ class ApplicationForm extends FormBase {
   }
   
   private function send_email($admin_email, $applicant_name, $program_title, $application_nid) {
-    $send_mail = new PhpMail();
-    $from = 'admin@slinkonline.com';
-    $message['headers'] = [
-      'content-type' => 'text/html',
-      'MIME-Version' => '1.0',
-      'reply-to' => $from,
-      'from' => 'Slink <' . $from . '>'
-    ];
-    $message['to'] = $admin_email;
-    $message['subject'] = $applicant_name . ' submitted an application for your ' . $program_title;
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = 'student_hosting';
+    $key = 'application_submitted';
+    $to = $admin_email;
+    $params['applicant_name'] = $applicant_name;
+    $params['program_title'] = $program_title;
+    $params['application_nid'] = $application_nid;
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $send = true;
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+    if ($result['result'] !== true) {
+      // error behavior
+    }
+    else {
+      // success behavior
+    }
+    // $send_mail = new PhpMail();
+    // $from = 'admin@slinkonline.com';
+    // $message['headers'] = [
+    //   'content-type' => 'text/html',
+    //   'MIME-Version' => '1.0',
+    //   'reply-to' => $from,
+    //   'from' => 'Slink <' . $from . '>'
+    // ];
+    // $message['to'] = $admin_email;
+    // $message['subject'] = $applicant_name . ' submitted an application for your ' . $program_title;
     
-    $message['body'] = $applicant_name . ' has submitted an application for your ' . $program_title . '.';
-      ' <a href="http://slinkonline.com/node/' . $application_nid . '">Click here</a> to view the application.';
+    // $message['body'] = $applicant_name . ' has submitted an application for your ' . $program_title . '.';
+    //   ' <a href="http://slinkonline.com/node/' . $application_nid . '">Click here</a> to view the application.';
     
-    $send_mail->mail($message);
+    // $send_mail->mail($message);
   }
 
 }
