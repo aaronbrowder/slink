@@ -101,6 +101,7 @@ details > .details-wrapper {
 
 .node--type-school.node--view-mode-teaser {
   position: relative;
+  min-height: 7em;
 }
 
 .node--type-school.node--view-mode-teaser header,
@@ -124,7 +125,7 @@ details > .details-wrapper {
   margin-bottom: 0.5em;
 }
 
-.field--name-user-picture {
+.view-profile-pic {
   float: left;
   margin-right: 1em;
   margin-top: 0.25em;
