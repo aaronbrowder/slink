@@ -17,16 +17,9 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
   }
 
   public function checkAuthStatus(GetResponseEvent $event) {
-
-    if ($this->account->isAnonymous()) {
-      
-      $route_name = \Drupal::routeMatch()->getRouteName();
-      
-      if ($route_name == 'user.login' || $route_name == 'contact.site_page' ||
-        (strpos($route_name, 'view') === 0 && strpos($route_name, 'rest_') !== FALSE)) {
-        return;
-      }
-
+    // 403 is the access denied page
+    if ($this->account->isAnonymous() && \Drupal::routeMatch()->getRouteName() == 'system.403') {
+      // 302 is a temporary redirect
       $response = new RedirectResponse('/contact', 302);
       $response->send();
       exit(0);
