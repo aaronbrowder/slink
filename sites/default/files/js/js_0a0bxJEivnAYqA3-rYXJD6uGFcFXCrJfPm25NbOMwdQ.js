@@ -32,4 +32,4 @@ function responsiveMenu() {
             allDetails[i].setAttribute('open', true);   
         }   
     }
-}
+};
