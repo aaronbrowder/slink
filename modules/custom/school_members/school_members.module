@@ -33,6 +33,10 @@ function school_members_form_alter(&$form, FormStateInterface $form_state, $form
     if ($form_id == 'search_form') {
         $form['advanced'] = NULL;
     }
+    // notify new user of account by default
+    if ($form_id == 'user_register_form') {
+        $form['account']['notify']['#default_value'] = TRUE;
+    }
 }
 
 /**
