@@ -72,7 +72,7 @@ class ApplicationForm extends FormBase {
           '#title' => t('JC Record'),
           '#description' => t(StudentHostingFormatter::JC_RECORD_DOCUMENT_DESCRIPTION),
           '#upload_location' => 'public://application_files',
-          '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
+          '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif heic']],
           '#required' => TRUE
         ]; 
       }
@@ -83,7 +83,7 @@ class ApplicationForm extends FormBase {
           '#title' => t('School Meeting Approval'),
           '#description' => t(StudentHostingFormatter::SM_APPROVAL_DOCUMENT_DESCRIPTION),
           '#upload_location' => 'public://application_files',
-          '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
+          '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif heic']],
           '#required' => TRUE
         ]; 
       }
@@ -94,7 +94,7 @@ class ApplicationForm extends FormBase {
           '#title' => t('Recommendation Letter'),
           '#description' => t(StudentHostingFormatter::RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION),
           '#upload_location' => 'public://application_files',
-          '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif']],
+          '#upload_validators' => [ 'file_validate_extensions' => ['pdf doc docx odt rtf jpg jpeg png gif heic']],
           '#required' => TRUE
         ]; 
       }
