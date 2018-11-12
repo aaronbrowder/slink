@@ -48,8 +48,8 @@
   {% if dependent_locality.code %}
     {{ dependent_locality.code }} <br>
   {% endif %}
-  {% if locality.code or postal_code or administrative_area.code %}
-    {{ locality }} {{ postal_code }} {{ administrative_area.code }} <br>
+  {% if locality.code or postal_code or administrative_area.name %}
+    {{ locality }} {{ postal_code }} {{ administrative_area.name }} <br>
   {% endif %}
   {{ country.name }}
 </p>

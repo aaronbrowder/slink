@@ -44,6 +44,22 @@ function address_theme() {
         'country' => [],
       ],
     ],
+    'address_long' => [
+      'variables' => [
+        'given_name' => '',
+        'additional_name' => '',
+        'family_name' => '',
+        'organization' => '',
+        'address_line1' => '',
+        'address_line2' => '',
+        'postal_code' => '',
+        'sorting_code' => '',
+        'dependent_locality' => [],
+        'locality' => [],
+        'administrative_area' => [],
+        'country' => [],
+      ],
+    ],
   ];
 }
 
