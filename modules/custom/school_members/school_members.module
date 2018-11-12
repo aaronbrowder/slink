@@ -4,6 +4,8 @@ use Drupal\user\UserInterface;
 use Drupal\user\Entity\User;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Access\AccessResult;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Implements hook_ENTITY_TYPE_presave().
@@ -51,8 +53,25 @@ function school_members_entity_type_build(array &$entity_types) {
  * Implements hook_entity_create_access().
  */
 function school_members_entity_create_access(AccountInterface $account, array $context, $entity_bundle) {
-  if ($context['entity_type_id'] != 'user') {
-    return AccessResult::neutral();
-  }
-  return AccessResult::allowedIfHasPermission($account, 'create users');
+    if ($context['entity_type_id'] != 'user') {
+        return AccessResult::neutral();
+    }
+    return AccessResult::allowedIfHasPermission($account, 'create users');
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function school_members_user_login($account) {
+    // after login, redirect to the page they were on before logging in
+    $current_route = \Drupal::routeMatch()->getRouteName();
+    if (in_array($current_route, ['user.reset', 'user.reset.login'])) {
+        return;
+    }
+    $tempstore = \Drupal::service('user.shared_tempstore')->get('school_members');
+    $redirect_path = $tempstore->get('redirect_path');
+    if ($redirect_path != NULL) {
+        $response = new RedirectResponse($redirect_path, 302);
+        $response->send();
+    }
 }
