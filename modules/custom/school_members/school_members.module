@@ -75,3 +75,31 @@ function school_members_user_login($account) {
         $response->send();
     }
 }
+
+/**
+ * Implements hook_mail_alter().
+ */
+function school_members_mail_alter(&$message) {
+    // modify the message when a user contacts another user
+    if (!empty($message['id']) && $message['id'] == 'contact_user_mail') {
+        
+        $site_name = \Drupal::config('system.site')->get('name');
+        $language = \Drupal::languageManager()->getLanguage($message['langcode']);
+        $options = ['langcode' => $language->getId()];
+        $sender = $message['params']['sender'];
+        
+        $variables = [
+            '@recipient-name' => $message['params']['recipient']->getDisplayName(),
+            '@site-name' => \Drupal::config('system.site')->get('name'),
+            '@sender-name' => $sender->getDisplayName(),
+            '@sender-school' => $sender->field_school->entity->getTitle(),
+            '@sender-url' => $sender->url('canonical', ['absolute' => TRUE, 'language' => $language])
+        ];
+        
+        $message['body'] = [];
+        $message['body'][] = t('Hello @recipient-name,', $variables, $options);
+        $message['body'][] = t("@sender-name (@sender-url) from @sender-school has sent you a message via your contact form at @site-name.", $variables, $options);
+        $build = entity_view($message['params']['contact_message'], 'mail');
+        $message['body'][] = \Drupal::service('renderer')->renderPlain($build);
+    }
+}

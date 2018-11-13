@@ -236,6 +236,19 @@ details > .details-wrapper {
   border: none;
 }
 
+.slink-school-members-view {
+  margin-top: -10px;
+}
+
+.slink-school-members-view .details-wrapper {
+  padding: 1em 1.5em;
+  line-height: 1.7;
+}
+
+.slink-school-members-view a {
+  font-size: 1.07em;
+}
+
 .application-read {
   font-weight: normal;
 }

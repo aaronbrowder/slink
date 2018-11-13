@@ -71,7 +71,7 @@ function student_hosting_link_alter(&$variables) {
     $application_nids = \Drupal::entityQuery('node')
       ->condition('type', 'student_hosting_application')
       ->condition('field_read', FALSE)
-      ->condition('field_recipient_school.entity.nid', $school->id())
+      ->condition('field_recipient_school.entity.nid', $school != NULL ? $school->id() : 0)
       ->execute();
     $count = count($application_nids);
     if ($count > 0) {

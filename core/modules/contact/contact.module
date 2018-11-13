@@ -159,6 +159,7 @@ function contact_mail($key, &$message, $params) {
       $message['body'][] = t('Hello @recipient-name,', $variables, $options);
       $message['body'][] = t("@sender-name (@sender-url) has sent you a message via your contact form at @site-name.", $variables, $options);
       $message['body'][] = t("If you don't want to receive such emails, you can change your settings at @recipient-edit-url.", $variables, $options);
+      $message['body'][] = 'message id: ' . $message['id'];
       $build = entity_view($contact_message, 'mail');
       $message['body'][] = \Drupal::service('renderer')->renderPlain($build);
       break;
