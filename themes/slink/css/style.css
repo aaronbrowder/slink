@@ -241,14 +241,45 @@ details > .details-wrapper {
 }
 
 .slink-school-members-view .details-wrapper {
-  padding: 1em 1.5em;
+  padding: 1em 1.3em;
   line-height: 1.7;
 }
 
 .slink-school-members-view a {
   font-size: 1.07em;
+  display: inline-block;
+  margin-right: 0.3em;
+  border: none;
+}
+
+.slink-school-member-age {
+  font-size: 1.07em;
+  display: inline-block;
+}
+
+.slink-school-member-age::before {
+  content: "(";
+}
+
+.slink-school-member-age::after {
+  content: ")";
 }
 
 .application-read {
   font-weight: normal;
+}
+
+.slink-interests {
+  clear: both;
+}
+
+.slink-interests .field__item {
+  display: inline-block;
+  background: #3175a0;
+  color: #fff;
+  padding: 0.3em 0.7em;
+  margin-bottom: 0.25em;
+  border-radius: 3px;
+  border-bottom: 1px solid #256187;
+  border-right: 1px solid #256187;
 }

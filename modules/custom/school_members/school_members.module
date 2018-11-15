@@ -39,6 +39,8 @@ function school_members_form_alter(&$form, FormStateInterface $form_state, $form
     if ($form_id == 'user_register_form') {
         $form['account']['notify']['#default_value'] = TRUE;
     }
+    // never show revision information in a content edit form
+    $form['revision_information']['#access'] = false;
 }
 
 /**

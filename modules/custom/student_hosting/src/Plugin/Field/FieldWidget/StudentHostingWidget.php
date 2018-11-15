@@ -139,7 +139,7 @@ class StudentHostingWidget extends WidgetBase  {
     $element['expectations'] = [
       '#type' => 'textarea',
       '#title' => t('Expectations'),
-      '#description' => t('Briefly describe the duties the student will be expected to perform, including things like democratic participation and role modeling.'),
+      '#description' => t('Briefly describe the duties the student will be expected to perform, including things like democratic participation and role modeling. (You don\'t necessarily need to fill this out for your student guest program -- it\'s mainly for ambassadors. You might be fine if your guests just kick back and relax.)'),
       '#default_value' => isset($item->expectations) ? $item->expectations : '',
       '#states' => $states,
     ];
