@@ -117,6 +117,12 @@ class ApplicationForm extends FormBase {
         '#attributes' => [ 'size' => 100 ]
       ];
     }
+    
+    if ($item->require_interview) {
+      $form['interview'] = [
+        '#markup' => '<br>' . t('After you submit your application, we will get in touch with you to schedule a video or phone interview.')
+      ];
+    }
 
     // Group submit handlers in an actions element with a key of "actions" so
     // that it gets styled correctly, and so that other modules may add actions

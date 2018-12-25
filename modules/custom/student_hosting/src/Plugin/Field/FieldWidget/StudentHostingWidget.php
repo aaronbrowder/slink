@@ -136,6 +136,13 @@ class StudentHostingWidget extends WidgetBase  {
       '#default_value' => isset($item->require_recommendation_letter) ? $item->require_recommendation_letter : '',
       '#states' => $states,
     ];
+    $element['require_interview'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Require Interview'),
+      '#description' => t('Turn this on if you will require applicants to complete a video or phone interview.'),
+      '#default_value' => isset($item->require_interview) ? $item->require_interview : '',
+      '#states' => $states,
+    ];
     $element['expectations'] = [
       '#type' => 'textarea',
       '#title' => t('Expectations'),

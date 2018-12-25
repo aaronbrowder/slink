@@ -79,6 +79,12 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
           'not null' => TRUE,
           'default' => 0
         ],
+        'require_interview' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'not null' => TRUE,
+          'default' => 0
+        ],
         'questions' => [
           'type' => 'text'
         ],
@@ -101,6 +107,7 @@ class StudentHostingItem extends FieldItemBase implements FieldItemInterface {
     $properties['require_jc_record'] = DataDefinition::create('boolean');
     $properties['require_sm_approval'] = DataDefinition::create('boolean');
     $properties['require_recommendation_letter'] = DataDefinition::create('boolean');
+    $properties['require_interview'] = DataDefinition::create('boolean');
     $properties['questions'] = DataDefinition::create('string');
       
     return $properties;

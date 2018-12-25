@@ -63,7 +63,7 @@ class StudentHostingFormatter extends FormatterBase {
           '#has_required_documents' => $item->require_jc_record || $item->require_sm_approval || $item->require_recommendation_letter,
           '#jc_record_document_description' => t(self::JC_RECORD_DOCUMENT_DESCRIPTION),
           '#sm_approval_document_description' => t(self::SM_APPROVAL_DOCUMENT_DESCRIPTION),
-          '#recommendation_letter_document_description' => t(self::RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION)
+          '#recommendation_letter_document_description' => t(self::RECOMMENDATION_LETTER_DOCUMENT_DESCRIPTION),
         ];
       }
     }
