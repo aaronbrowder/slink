@@ -2,10 +2,13 @@
 
 use Drupal\user\UserInterface;
 use Drupal\user\Entity\User;
+use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\school_members\Access\CustomUserAccessControlHandler;
 
 /**
  * Implements hook_ENTITY_TYPE_presave().
@@ -28,6 +31,13 @@ function school_members_user_presave(UserInterface $user) {
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_alter().
+ */
+function school_members_entity_type_alter(array &$entity_types) {
+  $entity_types['user']->setHandlerClass('access', CustomUserAccessControlHandler::class);
+}
+
+/**
  * Implements hook_form_alter().
  */
 function school_members_form_alter(&$form, FormStateInterface $form_state, $form_id) {
@@ -39,8 +49,29 @@ function school_members_form_alter(&$form, FormStateInterface $form_state, $form
     if ($form_id == 'user_register_form') {
         $form['account']['notify']['#default_value'] = TRUE;
     }
+    // show "cancel account" button for school admins editing their school members
+    if ($form_id == 'user_form') {
+        $entity = $form_state->getFormObject()->getEntity();
+        if (\Drupal\school_members\Access\CustomUserAccessControlHandler::isSchoolMember($entity)) {
+            $form['actions']['delete']['#access'] = true;
+        }
+    }
+    // don't require email confirmation if school admin is canceling a member account
+    if ($form_id == 'user_cancel_form') {
+        $entity = $form_state->getFormObject()->getEntity();
+        if (\Drupal\school_members\Access\CustomUserAccessControlHandler::isSchoolMember($entity)) {
+            $form['actions']['submit']['#submit'] = ['school_admin_user_cancel_form_submit'];
+        }
+    }
     // never show revision information in a content edit form
     $form['revision_information']['#access'] = false;
+}
+
+function school_admin_user_cancel_form_submit(&$form, &$form_state) {
+    // cancel the account without requiring a confirmation email
+    $entity = $form_state->getFormObject()->getEntity();
+    user_cancel($form_state->getValues(), $entity->id(), $form_state->getValue('user_cancel_method'));
+    $form_state->setRedirectUrl(Url::fromRoute('<front>'));
 }
 
 /**
