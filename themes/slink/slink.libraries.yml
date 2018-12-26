@@ -4,6 +4,7 @@ global-styling:
       css/style.css: {}
   js:
     js/script.js: {}
+    js/rest.js: {}
     
 fonts:
   css:

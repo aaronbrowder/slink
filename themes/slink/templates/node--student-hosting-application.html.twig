@@ -101,6 +101,13 @@
     {% endif %}
   </header>
   <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+    {% if page %}
+      <div class="slink-student-hosting-application-boxes">
+        <input data-node-id="{{ node.id }}" type="radio" name="box" value="inbox" id="application-box-inbox" {% if not node.field_completed.value and not node.field_canceled.value %} checked {% endif %}> Inbox<br>
+        <input data-node-id="{{ node.id }}" type="radio" name="box" value="completed" id="application-box-completed" {% if node.field_completed.value %} checked {% endif %}> Completed<br>
+        <input data-node-id="{{ node.id }}" type="radio" name="box" value="canceled" id="application-box-canceled" {% if node.field_canceled.value %} checked {% endif %}> Canceled
+      </div>
+    {% endif %}
     {{ content }}
   </div>
 </article>
