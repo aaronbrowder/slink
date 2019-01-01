@@ -276,12 +276,21 @@ details > .details-wrapper {
 .slink-interests .field__item {
   display: inline-block;
   background: #3175a0;
-  color: #fff;
   padding: 0.3em 0.7em;
   margin-bottom: 0.25em;
   border-radius: 3px;
   border-bottom: 1px solid #256187;
   border-right: 1px solid #256187;
+}
+
+.slink-interests a {
+  color: #fff;
+  border: none;
+}
+
+.slink-interests a:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
 .slink-student-hosting-application-boxes {
