@@ -9,6 +9,7 @@ use Drupal\Core\Access\AccessResult;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\school_members\Access\CustomUserAccessControlHandler;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_ENTITY_TYPE_presave().
@@ -134,5 +135,15 @@ function school_members_mail_alter(&$message) {
         $message['body'][] = t("@sender-name (@sender-url) from @sender-school has sent you a message via your contact form at @site-name.", $variables, $options);
         $build = entity_view($message['params']['contact_message'], 'mail');
         $message['body'][] = \Drupal::service('renderer')->renderPlain($build);
+    }
+}
+
+/**
+ * Implements hook_views_post_render().
+ */
+function school_members_views_post_render(ViewExecutable $view) {
+    if ($view->id() == 'search') {
+        $term = $view->getExposedInput()['search_api_fulltext'];
+        $view->setTitle('Search for "' . $term . '"');
     }
 }
