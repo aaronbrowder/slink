@@ -1,0 +1,14 @@
+name: Views Taxonomy Term Name Depth
+type: module
+description: The module provides the Views plugin for a Contextual filter (argument) validator that converts valid term names into IDs.
+# core: 8.x
+package: Views
+dependencies:
+  - views
+  - taxonomy
+
+# Information added by Drupal.org packaging script on 2018-03-24
+version: '8.x-1.0-alpha1'
+core: '8.x'
+project: 'views_taxonomy_term_name_into_id'
+datestamp: 1521909501
