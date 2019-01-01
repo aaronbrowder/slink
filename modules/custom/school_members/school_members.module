@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\school_members\Access\CustomUserAccessControlHandler;
 use Drupal\views\ViewExecutable;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Implements hook_ENTITY_TYPE_presave().
@@ -145,5 +146,14 @@ function school_members_views_post_render(ViewExecutable $view) {
     if ($view->id() == 'search') {
         $term = $view->getExposedInput()['search_api_fulltext'];
         $view->setTitle('Search for "' . $term . '"');
+    }
+    if ($view->id() == 'people_with_interests') {
+        if (sizeof($view->args) > 0) {
+            $tid = $view->args[0];
+            $term = Term::load($tid);
+            if (!empty($term)) {
+                $view->setTitle('People Interested in ' . $term->getName());
+            }
+        }
     }
 }
