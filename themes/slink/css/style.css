@@ -294,7 +294,7 @@ details > .details-wrapper {
 }
 
 .slink-student-hosting-application-boxes {
-  margin-top: 25px;
+  margin-top: 18px;
 }
 
 .slink-user-search-result-name {
@@ -307,4 +307,16 @@ details > .details-wrapper {
 .slink-user-search-result-name a {
   color: #000;
   border: none;
+}
+
+.node__meta {
+  margin-bottom: 2px;
+}
+
+.comment__content {
+  padding-top: 22px;
+}
+
+.comment__author a {
+  font-size: 0.9em;
 }
