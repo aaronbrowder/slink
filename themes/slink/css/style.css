@@ -312,3 +312,11 @@ details > .details-wrapper {
 .node__meta {
   margin-bottom: 2px;
 }
+
+.comment__content {
+  padding-top: 22px;
+}
+
+.comment__author a {
+  font-size: 0.9em;
+}
