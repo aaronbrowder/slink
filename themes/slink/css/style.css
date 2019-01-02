@@ -321,6 +321,12 @@ details > .details-wrapper {
   font-size: 0.9em;
 }
 
-.comment-form .form-type-checkbox {
+.comment-form .form-type-checkbox, .comment-form .form-radios {
   margin-left: 0;
+}
+
+#edit-notify-type .form-item-notify-type {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0.2em;
 }
