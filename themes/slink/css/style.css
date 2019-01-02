@@ -320,3 +320,7 @@ details > .details-wrapper {
 .comment__author a {
   font-size: 0.9em;
 }
+
+.comment-form .form-type-checkbox {
+  margin-left: 0;
+}
