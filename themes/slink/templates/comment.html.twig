@@ -75,20 +75,14 @@
   ]
 %}
 <article role="article"{{ attributes.addClass(classes)|without('role') }}>
-  <footer class="comment__meta">
+  <div class="slink-comment-picture">
     {{ user_picture }}
-    <p class="comment__author">{{ author }}</p>
-    <p class="comment__time">{{ created }}</p>
-    {#
-      Indicate the semantic relationship between parent and child comments
-      for accessibility. The list is difficult to navigate in a screen
-      reader without this information.
-    #}
-    {% if parent %}
-      <p class="visually-hidden">{{ parent }}</p>
-    {% endif %}
-  </footer>
-  <div{{ content_attributes.addClass('comment__content') }}>
-    {{ content }}
+  </div>
+  <div class="slink-comment-main">
+    <div class="slink-comment-meta">
+      <span class="slink-comment-author">{{ author }}</span>&nbsp;
+      <span class="slink-comment-time">commented {{ created }} ago</span>
+    </div>
+    <div class="slink-comment-content">{{ content }}</div>
   </div>
 </article>

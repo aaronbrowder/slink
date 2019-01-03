@@ -28,8 +28,8 @@ class InterestFormatter extends EntityReferenceFormatterBase {
       $label = $entity->label();
       $url = '/interests/' . $entity->id();
       $elements[$delta] = [
-          '#markup' => '<a href="' . $url . '">' . $label . '</a>'
-        ];
+        '#markup' => '<a href="' . $url . '">' . $label . '</a>'
+      ];
     }
     return $elements;
   }

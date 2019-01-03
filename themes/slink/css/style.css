@@ -313,14 +313,46 @@ details > .details-wrapper {
   margin-bottom: 2px;
 }
 
-.comment__content {
-  padding-top: 22px;
+.comment {
+  display: block;
+  border-top: 1px solid #c6c6c6;
+  padding-top: 18px;
+  padding-bottom: 10px;
 }
 
-.comment__author a {
+.slink-comment-picture {
+  float: left;
+  margin-right: 22px;
+  margin-top: 7px;
+}
+
+.slink-comment-picture .field--type-image {
+  float: none;
+  margin: 0;
+}
+
+.slink-comment-main {
   font-size: 0.9em;
 }
 
-.comment-form .form-type-checkbox {
+.slink-comment-meta {
+  margin-bottom: 10px;
+}
+
+.slink-comment-time {
+  color: #666;
+}
+
+.comment-form .form-type-checkbox, .comment-form .form-radios {
   margin-left: 0;
+}
+
+#edit-notify-type .form-item-notify-type {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0.2em;
+}
+
+.forum__title {
+  padding-bottom: 5px;
 }
