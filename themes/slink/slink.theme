@@ -11,3 +11,11 @@ function slink_preprocess_node(&$variables) {
 function slink_form_search_block_form_alter(&$form, &$form_state) {
   $form['keys']['#attributes']['placeholder'][] = t('Search');
 }
+
+/**
+* Implements hook_preprocess_comment
+*/
+function slink_preprocess_comment(&$variables) {
+  $date = $variables['comment']->getCreatedTime();
+  $variables['created'] = \Drupal::service('date.formatter')->formatInterval(REQUEST_TIME - $date);
+}
