@@ -356,3 +356,12 @@ details > .details-wrapper {
 .forum__title {
   padding-bottom: 5px;
 }
+
+.slink-interests-help::before {
+  color: #666;
+  content: 'Select an interest to see a list of people who share that interest.';
+}
+
+.slink-interests .field {
+  padding-top: 12px;
+}
