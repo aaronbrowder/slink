@@ -1,0 +1,14 @@
+uuid: 535ad04e-aa08-4254-8d07-02b763897540
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.school_member
+  module:
+    - user
+id: user_add_role_action.school_member
+label: 'Add the School Member role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: school_member

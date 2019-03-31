@@ -1,0 +1,20 @@
+uuid: 5e80f99a-7d83-4320-b461-30d9dcacae1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.school
+id: node.school.uid
+field_name: uid
+entity_type: node
+bundle: school
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getCurrentUserId'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

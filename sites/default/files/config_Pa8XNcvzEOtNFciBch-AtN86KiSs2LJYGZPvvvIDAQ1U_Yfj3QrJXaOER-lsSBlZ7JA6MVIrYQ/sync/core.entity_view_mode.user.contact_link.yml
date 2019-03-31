@@ -1,0 +1,10 @@
+uuid: 2feed488-e155-4654-af8a-61882a2cb810
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.contact_link
+label: 'Reply to Applicant'
+targetEntityType: user
+cache: true

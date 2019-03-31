@@ -1,0 +1,8 @@
+uuid: cd4fdb1b-88a5-44dc-8d56-b5cd7fc882b9
+langcode: en
+status: true
+dependencies: {  }
+id: school-member
+label: 'School Member'
+description: ''
+locked: false

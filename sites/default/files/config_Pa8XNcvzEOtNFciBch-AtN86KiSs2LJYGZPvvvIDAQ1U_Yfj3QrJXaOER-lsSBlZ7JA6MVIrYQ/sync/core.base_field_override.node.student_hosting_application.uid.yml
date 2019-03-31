@@ -1,0 +1,20 @@
+uuid: 41a1c3a0-4a7d-4351-a64e-3a198857966a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.student_hosting_application
+id: node.student_hosting_application.uid
+field_name: uid
+entity_type: node
+bundle: student_hosting_application
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getCurrentUserId'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

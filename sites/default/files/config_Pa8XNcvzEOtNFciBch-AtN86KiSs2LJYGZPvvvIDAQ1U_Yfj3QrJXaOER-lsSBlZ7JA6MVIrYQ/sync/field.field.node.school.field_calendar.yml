@@ -1,0 +1,27 @@
+uuid: a30bbe42-353b-41f9-880e-653acea631da
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_calendar
+    - node.type.school
+  module:
+    - file
+id: node.school.field_calendar
+field_name: field_calendar
+entity_type: node
+bundle: school
+label: Calendar
+description: 'A calendar which shows the dates of school breaks and holidays.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'pdf doc docx rtf odt png jpg jpeg heic'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

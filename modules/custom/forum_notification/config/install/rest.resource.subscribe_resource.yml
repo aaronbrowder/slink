@@ -1,0 +1,9 @@
+id: subscribe_resource
+plugin_id: subscribe_resource
+granularity: method
+configuration:
+  PATCH:
+    supported_formats:
+      - hal_json
+    supported_auth:
+      - cookie

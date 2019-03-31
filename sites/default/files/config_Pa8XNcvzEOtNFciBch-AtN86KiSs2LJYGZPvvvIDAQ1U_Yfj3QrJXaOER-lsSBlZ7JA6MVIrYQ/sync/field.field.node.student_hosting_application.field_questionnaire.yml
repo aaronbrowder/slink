@@ -1,0 +1,21 @@
+uuid: 2e622728-402d-49ba-92f7-637790587614
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_questionnaire
+    - node.type.student_hosting_application
+  module:
+    - text
+id: node.student_hosting_application.field_questionnaire
+field_name: field_questionnaire
+entity_type: node
+bundle: student_hosting_application
+label: Questionnaire
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

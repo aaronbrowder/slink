@@ -1,0 +1,39 @@
+uuid: a72b87d5-e05e-4b2e-9cae-cc991e6af26d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:6205b35d-064c-439d-9d32-f6311db0d7f8'
+  module:
+    - block_content
+    - system
+    - user
+  theme:
+    - slink
+id: welcometoslink
+theme: slink
+region: content
+weight: -7
+provider: null
+plugin: 'block_content:6205b35d-064c-439d-9d32-f6311db0d7f8'
+settings:
+  id: 'block_content:6205b35d-064c-439d-9d32-f6311db0d7f8'
+  label: 'Welcome to Slink'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      anonymous: anonymous
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+  request_path:
+    id: request_path
+    pages: /contact
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,39 @@
+uuid: a9ba2743-8c33-4069-99da-c6898ccd5c95
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.school_members
+  module:
+    - node
+    - system
+    - views
+  theme:
+    - slink
+id: views_block__school_members_block_1
+theme: slink
+region: content
+weight: -2
+provider: null
+plugin: 'views_block:school_members-block_1'
+settings:
+  id: 'views_block:school_members-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: '5'
+  context_mapping: {  }
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      school: school
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: "/node/*/edit\r\n/node/*/application"
+    negate: true
+    context_mapping: {  }

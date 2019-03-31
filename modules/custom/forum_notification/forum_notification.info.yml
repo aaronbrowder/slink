@@ -1,0 +1,10 @@
+name: Forum Notification
+type: module
+description: 'Sends custom e-mail notification to users when a new forum topic is created on the site.'
+package: Other
+# core: 8.x
+configure: forum_notification.config_menu
+
+# Information added by Drupal.org packaging script on 2018-12-27
+version: '8.x-3.4'
+core: '8.x'

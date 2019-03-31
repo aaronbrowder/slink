@@ -1,0 +1,20 @@
+uuid: 7ec2bcbb-b6d0-4240-b15f-96cc14731db5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_name
+  module:
+    - user
+id: user.user.field_name
+field_name: field_name
+entity_type: user
+bundle: user
+label: Name
+description: 'Your real name. This will only be visible to authenticated Slink members.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

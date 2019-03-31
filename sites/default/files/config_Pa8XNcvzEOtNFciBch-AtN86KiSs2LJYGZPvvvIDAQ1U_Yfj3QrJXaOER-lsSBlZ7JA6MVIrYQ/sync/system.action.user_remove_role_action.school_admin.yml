@@ -1,0 +1,14 @@
+uuid: ce80ce7a-6bc2-440c-be47-0e1f4b6d78e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.school_admin
+  module:
+    - user
+id: user_remove_role_action.school_admin
+label: 'Remove the School Admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: school_admin

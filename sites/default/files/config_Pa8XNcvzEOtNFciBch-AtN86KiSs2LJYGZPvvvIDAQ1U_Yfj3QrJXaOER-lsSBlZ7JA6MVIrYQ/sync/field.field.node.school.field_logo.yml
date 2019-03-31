@@ -1,0 +1,38 @@
+uuid: 436d55a2-1089-496f-94be-ccbed2b35328
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_logo
+    - node.type.school
+  module:
+    - image
+id: node.school.field_logo
+field_name: field_logo
+entity_type: node
+bundle: school
+label: Logo
+description: 'Your school''s logo image.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: false
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: a3e603e2-2f15-4cb0-9ab0-79cfd9db36ae
+    alt: ''
+    title: ''
+    width: 100
+    height: 100
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

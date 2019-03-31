@@ -1,0 +1,10 @@
+uuid: ddb6248a-2e12-4d3b-9564-c1e8e7446f38
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.search_result
+label: 'Search Result'
+targetEntityType: user
+cache: true

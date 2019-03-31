@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\user\Entity\User;
+
 /**
 * Implements hook_preprocess_node
 */
@@ -18,4 +20,21 @@ function slink_form_search_block_form_alter(&$form, &$form_state) {
 function slink_preprocess_comment(&$variables) {
   $date = $variables['comment']->getCreatedTime();
   $variables['created'] = \Drupal::service('date.formatter')->formatInterval(REQUEST_TIME - $date);
+}
+
+/**
+* Implements hook_preprocess_forums
+*/
+function slink_preprocess_forums(&$vars) {
+  $forum = $vars['term'];
+  $current_user = User::load(Drupal::currentUser()->id());
+  $vars['uid'] = $current_user->id();
+  
+  $func = function($value) {
+    return $value['target_id'];
+  };
+  $forum_subscriptions = $current_user->get('field_forum_subscriptions')->getValue();
+  $forum_ids = array_map($func, $forum_subscriptions);
+  $vars['is_subscribed'] = in_array($forum->id(), $forum_ids);
+  $vars['is_container'] = !empty($forum->forum_container->value);
 }

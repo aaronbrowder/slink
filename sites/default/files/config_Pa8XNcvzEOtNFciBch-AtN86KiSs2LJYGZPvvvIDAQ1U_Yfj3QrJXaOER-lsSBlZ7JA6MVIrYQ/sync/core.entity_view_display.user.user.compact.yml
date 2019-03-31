@@ -1,0 +1,42 @@
+uuid: cdd2062f-7a8f-4028-8d1c-d1d9f3799bcd
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.compact
+    - field.field.user.user.field_about_me
+    - field.field.user.user.field_birthdate
+    - field.field.user.user.field_interests
+    - field.field.user.user.field_name
+    - field.field.user.user.field_profile_email
+    - field.field.user.user.field_school
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+  module:
+    - image
+    - user
+_core:
+  default_config_hash: '-cLsS3M3JycipXQt9rEb81_HxKneReoGuRh8ijcOPXs'
+id: user.user.compact
+targetEntityType: user
+bundle: user
+mode: compact
+content:
+  user_picture:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: content
+    third_party_settings: {  }
+hidden:
+  field_about_me: true
+  field_birthdate: true
+  field_interests: true
+  field_name: true
+  field_profile_email: true
+  field_school: true
+  member_for: true
+  realname: true

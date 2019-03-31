@@ -1,0 +1,35 @@
+uuid: 1c59b4a5-22c1-4736-b6bf-c034e0da850c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_applicant
+  module:
+    - fieldblock
+    - node
+  theme:
+    - slink
+id: contentfield
+theme: slink
+region: content
+weight: -3
+provider: null
+plugin: 'fieldblock:node'
+settings:
+  id: 'fieldblock:node'
+  label: 'Reply to Applicant'
+  provider: fieldblock
+  label_display: '0'
+  label_from_field: false
+  field_name: field_applicant
+  formatter_id: entity_reference_entity_view
+  formatter_settings:
+    view_mode: contact_link
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      student_hosting_application: student_hosting_application
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

@@ -1,0 +1,20 @@
+uuid: 0c71fe2b-1823-4032-86e9-15015b034e9e
+langcode: en
+status: true
+dependencies:
+  theme:
+    - slink
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: slink_page_title
+theme: slink
+region: content
+weight: -10
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

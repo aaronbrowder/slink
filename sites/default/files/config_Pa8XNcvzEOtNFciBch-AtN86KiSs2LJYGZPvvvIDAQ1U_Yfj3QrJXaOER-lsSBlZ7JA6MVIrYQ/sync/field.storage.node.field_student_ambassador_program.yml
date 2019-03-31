@@ -1,0 +1,19 @@
+uuid: 524955d9-2599-445e-999a-c02e52d971c4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - student_hosting
+id: node.field_student_ambassador_program
+field_name: field_student_ambassador_program
+entity_type: node
+type: student_hosting
+settings: {  }
+module: student_hosting
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

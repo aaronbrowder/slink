@@ -1,0 +1,28 @@
+uuid: 475f68a4-8683-4b9c-87fb-4d03abc50a0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_applicant
+    - node.type.student_hosting_application
+id: node.student_hosting_application.field_applicant
+field_name: field_applicant
+entity_type: node
+bundle: student_hosting_application
+label: Applicant
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    include_anonymous: false
+    filter:
+      type: _none
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

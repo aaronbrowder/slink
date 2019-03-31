@@ -1,0 +1,27 @@
+uuid: c73ddc03-0cd1-4ab1-875c-ed715a983ebe
+langcode: en
+status: true
+dependencies:
+  module:
+    - contact
+    - system
+  theme:
+    - slink
+id: sitewidecontactform
+theme: slink
+region: content
+weight: -4
+provider: null
+plugin: formblock_contact
+settings:
+  id: formblock_contact
+  label: 'Site-wide contact form'
+  provider: contact
+  label_display: '0'
+  contact_form: feedback
+visibility:
+  request_path:
+    id: request_path
+    pages: /feedback
+    negate: false
+    context_mapping: {  }

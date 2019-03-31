@@ -1,0 +1,20 @@
+uuid: f124d7df-fee3-4208-ba77-7f9da45c2687
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.student_hosting_application
+  module:
+    - path
+id: node.student_hosting_application.path
+field_name: path
+entity_type: node
+bundle: student_hosting_application
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

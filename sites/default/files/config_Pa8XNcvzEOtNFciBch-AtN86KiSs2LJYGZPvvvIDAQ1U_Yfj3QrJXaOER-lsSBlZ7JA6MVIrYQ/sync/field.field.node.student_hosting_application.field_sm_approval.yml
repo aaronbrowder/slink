@@ -1,0 +1,27 @@
+uuid: 5412094a-ca39-4a08-9600-83a0858f5c3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sm_approval
+    - node.type.student_hosting_application
+  module:
+    - file
+id: node.student_hosting_application.field_sm_approval
+field_name: field_sm_approval
+entity_type: node
+bundle: student_hosting_application
+label: 'School Meeting Approval'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'pdf doc docx rtf odt png jpg jpeg heic'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

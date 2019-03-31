@@ -1,0 +1,133 @@
+uuid: 4d188641-6a36-43bd-897d-0d4ebc258762
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.search_result
+    - field.field.user.user.field_about_me
+    - field.field.user.user.field_birthdate
+    - field.field.user.user.field_interests
+    - field.field.user.user.field_name
+    - field.field.user.user.field_profile_email
+    - field.field.user.user.field_school
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+  module:
+    - datetime
+    - ds
+    - field_group
+    - image
+    - user
+third_party_settings:
+  field_group:
+    group_picture:
+      children:
+        - user_picture
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: view-profile-pic
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Picture
+      region: hidden
+    group_name:
+      children:
+        - field_name
+      parent_name: ''
+      weight: 1
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: slink-user-search-result-name
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Name
+      region: hidden
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      ds_content:
+        - group_picture
+        - user_picture
+        - group_name
+        - field_name
+        - field_birthdate
+        - field_school
+_core:
+  default_config_hash: V51QPCKkgNREKtSmB9Iu2wmAMEpktVpnzklWaZV8UYo
+id: user.user.search_result
+targetEntityType: user
+bundle: user
+mode: search_result
+content:
+  field_birthdate:
+    weight: 2
+    label: hidden
+    settings:
+      future_format: '@interval hence'
+      past_format: '@interval'
+      granularity: 1
+    third_party_settings: {  }
+    type: datetime_time_ago
+    region: ds_content
+  field_name:
+    type: string
+    weight: 1
+    region: ds_content
+    label: hidden
+    settings:
+      link_to_entity: true
+    third_party_settings: {  }
+  field_school:
+    weight: 3
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: ds_content
+  private_message_link:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  user_picture:
+    type: image
+    weight: 1
+    region: ds_content
+    settings:
+      image_style: thumbnail
+      image_link: content
+    third_party_settings: {  }
+    label: hidden
+hidden:
+  field_about_me: true
+  field_interests: true
+  field_profile_email: true
+  linked_username: true
+  member_for: true
+  realname: true

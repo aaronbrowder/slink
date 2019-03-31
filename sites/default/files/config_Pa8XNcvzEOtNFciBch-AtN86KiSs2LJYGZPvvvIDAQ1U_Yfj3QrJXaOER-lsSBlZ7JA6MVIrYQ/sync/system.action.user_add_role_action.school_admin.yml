@@ -1,0 +1,14 @@
+uuid: f15fb67d-6bb0-4abe-a336-b8b793217224
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.school_admin
+  module:
+    - user
+id: user_add_role_action.school_admin
+label: 'Add the School Admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: school_admin

@@ -1,0 +1,21 @@
+uuid: de4ecc7c-c884-41f1-bb62-538f5b39dd63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attendance_policy
+    - node.type.school
+id: node.school.field_attendance_policy
+field_name: field_attendance_policy
+entity_type: node
+bundle: school
+label: 'Attendance Policy'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'Students must attend school at least 5 hours a day, 5 days a week.'
+default_value_callback: ''
+settings: {  }
+field_type: string

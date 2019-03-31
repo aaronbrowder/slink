@@ -1,0 +1,75 @@
+uuid: d51720a1-bf0a-4bf1-81b3-327839ccd791
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.school.field_address
+    - field.field.node.school.field_age_of_oldest_student
+    - field.field.node.school.field_age_of_youngest_student
+    - field.field.node.school.field_attendance_policy
+    - field.field.node.school.field_description
+    - field.field.node.school.field_email
+    - field.field.node.school.field_logo
+    - field.field.node.school.field_number_of_students
+    - field.field.node.school.field_open_campus
+    - field.field.node.school.field_phone_number
+    - field.field.node.school.field_photos
+    - field.field.node.school.field_student_guest_program
+    - field.field.node.school.field_year_opened
+    - image.style.thumbnail
+    - node.type.school
+  module:
+    - address
+    - image
+    - user
+id: node.school.teaser
+targetEntityType: node
+bundle: school
+mode: teaser
+content:
+  field_address:
+    type: address_short
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_logo:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: content
+    third_party_settings: {  }
+  field_number_of_students:
+    type: number_integer
+    weight: 3
+    region: content
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+  field_year_opened:
+    type: number_integer
+    weight: 2
+    region: content
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+hidden:
+  field_age_of_oldest_student: true
+  field_age_of_youngest_student: true
+  field_attendance_policy: true
+  field_description: true
+  field_email: true
+  field_open_campus: true
+  field_phone_number: true
+  field_photos: true
+  field_student_guest_program: true
+  links: true

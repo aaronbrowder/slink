@@ -15,15 +15,15 @@ function getCsrfToken(callback) {
     });
 }
 
-function patchNode(csrfToken, nodeId, nodeData) {
+function patch(csrfToken, url, data) {
   jQuery.ajax({
-    url: `${baseUrl}/node/${nodeId}?_format=hal_json`,
+    url: `${url}?_format=hal_json`,
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/hal+json',
       'X-CSRF-Token': csrfToken
     },
-    data: JSON.stringify(nodeData),
+    data: JSON.stringify(data),
     success: function (response) {
       console.log(response);
     }
@@ -49,18 +49,30 @@ function updateApplication(nodeId, completed, canceled) {
   };
     
   getCsrfToken(function (csrfToken) {
-    patchNode(csrfToken, nodeId, nodeData);
+    patch(csrfToken, `${baseUrl}/node/${nodeId}`, nodeData);
   }); 
+}
+
+function updateForumSubscription(forumId, userId, subscribe) {
+  //console.log(`forumId: ${forumId}, userId: ${userId}, subscribe: ${subscribe}`);
+  getCsrfToken(function (csrfToken) {
+    patch(csrfToken, `${baseUrl}/forum-subscribe/${forumId}/${userId}/${subscribe}`);
+    $('#slink-forum-subscribe-success').show();
+  });
 }
 
 $(document).ready(function() {
   $('#application-box-inbox').click(function() {
-   updateApplication($(this).data('node-id'), false, false); 
+    updateApplication($(this).data('node-id'), false, false); 
   });
   $('#application-box-completed').click(function() {
-   updateApplication($(this).data('node-id'), true, false); 
+    updateApplication($(this).data('node-id'), true, false); 
   });
   $('#application-box-canceled').click(function() {
-   updateApplication($(this).data('node-id'), false, true); 
+    updateApplication($(this).data('node-id'), false, true); 
+  });
+  
+  $('#slink-forum-subscribe').click(function() {
+    updateForumSubscription($(this).data('forum-id'), $(this).data('user-id'), this.checked);
   });
 });

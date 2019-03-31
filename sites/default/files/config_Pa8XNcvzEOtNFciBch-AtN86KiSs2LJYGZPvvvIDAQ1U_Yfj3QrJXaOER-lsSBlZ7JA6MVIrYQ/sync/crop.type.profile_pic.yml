@@ -1,0 +1,12 @@
+uuid: 16c00af8-c16b-411a-8cb1-ae9d6e73964d
+langcode: en
+status: true
+dependencies: {  }
+label: 'Profile Pic'
+id: profile_pic
+description: ''
+aspect_ratio: '1:1'
+soft_limit_width: null
+soft_limit_height: null
+hard_limit_width: null
+hard_limit_height: null

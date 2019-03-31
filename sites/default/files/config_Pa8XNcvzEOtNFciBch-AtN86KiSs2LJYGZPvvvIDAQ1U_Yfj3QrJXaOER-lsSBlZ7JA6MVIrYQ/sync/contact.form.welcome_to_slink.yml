@@ -1,0 +1,12 @@
+uuid: b4129d54-69fe-4d04-8eed-00db4159e7fd
+langcode: en
+status: true
+dependencies: {  }
+id: welcome_to_slink
+label: 'Welcome to Slink'
+recipients:
+  - aaronbrowder@gmail.com
+reply: ''
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''

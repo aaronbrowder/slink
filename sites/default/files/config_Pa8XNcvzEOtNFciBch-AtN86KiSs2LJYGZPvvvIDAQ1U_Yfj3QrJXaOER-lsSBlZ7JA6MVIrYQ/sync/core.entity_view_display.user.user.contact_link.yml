@@ -1,0 +1,65 @@
+uuid: 5e3a6c23-ea42-4eaf-82df-2314c62661f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.contact_link
+    - field.field.user.user.field_birthdate
+    - field.field.user.user.field_name
+    - field.field.user.user.field_profile_email
+    - field.field.user.user.field_school
+    - field.field.user.user.user_picture
+  module:
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      ds_content:
+        - contact_link
+    fields:
+      contact_link:
+        plugin_id: contact_link
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          'link text': 'Reply to Applicant'
+          'link class': slink-button-primary
+          wrapper: ''
+          class: ''
+_core:
+  default_config_hash: V51QPCKkgNREKtSmB9Iu2wmAMEpktVpnzklWaZV8UYo
+id: user.user.contact_link
+targetEntityType: user
+bundle: user
+mode: contact_link
+content:
+  private_message_link:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_birthdate: true
+  field_name: true
+  field_profile_email: true
+  field_school: true
+  linked_username: true
+  member_for: true
+  realname: true
+  user_picture: true

@@ -1,0 +1,154 @@
+uuid: 98125abb-a0c8-4fbd-898a-479597e84798
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_about_me
+    - field.field.user.user.field_birthdate
+    - field.field.user.user.field_interests
+    - field.field.user.user.field_name
+    - field.field.user.user.field_profile_email
+    - field.field.user.user.field_school
+    - field.field.user.user.user_picture
+    - image.style.medium
+  module:
+    - datetime
+    - ds
+    - field_group
+    - image
+    - school_members
+    - user
+third_party_settings:
+  field_group:
+    group_details:
+      children:
+        - field_name
+        - field_birthdate
+        - field_school
+      parent_name: ''
+      weight: 1
+      format_type: table
+      format_settings:
+        id: ''
+        classes: ''
+        fieldtitle: 0
+        wrapper: '0'
+        caption: ''
+        required_fields: false
+      label: Details
+      region: content
+    group_picture:
+      children:
+        - user_picture
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: view-profile-pic
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Picture
+      region: content
+    group_interests:
+      children:
+        - group_inter
+      parent_name: ''
+      weight: 3
+      format_type: details
+      format_settings:
+        label: Interests
+        open: true
+        id: ''
+        classes: slink-interests
+      label: Interests
+      region: content
+    group_inter:
+      children:
+        - field_interests
+      parent_name: group_interests
+      weight: 20
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: slink-interests-help
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Interests Help'
+      region: content
+_core:
+  default_config_hash: V51QPCKkgNREKtSmB9Iu2wmAMEpktVpnzklWaZV8UYo
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  field_about_me:
+    type: basic_string
+    weight: 2
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_birthdate:
+    weight: 3
+    label: hidden
+    settings:
+      future_format: '@interval hence'
+      past_format: '@interval'
+      granularity: 1
+    third_party_settings: {  }
+    type: datetime_time_ago
+    region: content
+  field_interests:
+    type: interest
+    weight: 21
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      ds:
+        ds_limit: ''
+  field_name:
+    type: string
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_school:
+    weight: 4
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  private_message_link:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  user_picture:
+    type: image
+    weight: 0
+    region: content
+    settings:
+      image_style: medium
+      image_link: file
+    third_party_settings: {  }
+    label: hidden
+hidden:
+  field_profile_email: true
+  linked_username: true
+  member_for: true
+  realname: true

@@ -1,0 +1,85 @@
+uuid: ae502def-4bd1-4cd6-9ee4-7a137287bf3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_about_me
+    - field.field.user.user.field_birthdate
+    - field.field.user.user.field_interests
+    - field.field.user.user.field_name
+    - field.field.user.user.field_profile_email
+    - field.field.user.user.field_school
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+  module:
+    - datetime
+    - focal_point
+    - user
+_core:
+  default_config_hash: K-1rBM8mTIkFp9RqOC2tMRUukOQ1xbRCfSKK8dEddnA
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  account:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_about_me:
+    weight: 4
+    settings:
+      rows: 4
+      placeholder: 'Tell a little bit about yourself. What makes you unique?'
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_birthdate:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_interests:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_name:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  language:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  timezone:
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  user_picture:
+    type: image_focal_point
+    settings:
+      preview_image_style: thumbnail
+      preview_link: true
+      offsets: '50,50'
+      progress_indicator: throbber
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  comment_notify_settings: true
+  contact: true
+  field_profile_email: true
+  field_school: true

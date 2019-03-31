@@ -1,0 +1,19 @@
+uuid: d86967d9-e38d-4fba-96c9-3b7627d2a1e8
+langcode: en
+status: true
+dependencies:
+  module:
+    - hal
+    - node
+    - user
+id: entity.node
+plugin_id: 'entity:node'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - PATCH
+  formats:
+    - hal_json
+  authentication:
+    - cookie

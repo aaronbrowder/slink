@@ -1,0 +1,20 @@
+uuid: a602da2d-a1ec-49de-a3a6-4f350e23c0a0
+langcode: en
+status: true
+dependencies:
+  theme:
+    - slink
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: slink_local_actions
+theme: slink
+region: content
+weight: -6
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

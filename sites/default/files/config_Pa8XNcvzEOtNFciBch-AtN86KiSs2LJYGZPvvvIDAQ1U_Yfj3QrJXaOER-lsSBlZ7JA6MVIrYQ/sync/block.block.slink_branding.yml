@@ -1,0 +1,25 @@
+uuid: 14bb73a5-ca5e-4749-8214-44fdd0bcadce
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - slink
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: slink_branding
+theme: slink
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }
