@@ -1,0 +1,18 @@
+uuid: 477d4f32-f267-4907-ac93-c0d868ee6907
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.student_hosting_application
+id: node.student_hosting_application.changed
+field_name: changed
+entity_type: node
+bundle: student_hosting_application
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

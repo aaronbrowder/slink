@@ -1,0 +1,36 @@
+uuid: 59e1f7f9-563d-4c9c-ad86-d937b8efae92
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.forum.body
+    - field.field.node.forum.comment_forum
+    - field.field.node.forum.taxonomy_forums
+    - node.type.forum
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: MK_j248n6esK84n87ulM_yPeqdkndKn94h4vTJC4wjw
+id: node.forum.teaser
+targetEntityType: node
+bundle: forum
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 0
+    region: content
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  comment_forum: true
+  taxonomy_forums: true

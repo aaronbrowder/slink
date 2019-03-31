@@ -1,0 +1,115 @@
+uuid: 6fcc126f-bb80-4563-b1a7-a201272ff25d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.abbreviated
+    - field.field.user.user.field_about_me
+    - field.field.user.user.field_birthdate
+    - field.field.user.user.field_interests
+    - field.field.user.user.field_name
+    - field.field.user.user.field_profile_email
+    - field.field.user.user.field_school
+    - field.field.user.user.user_picture
+    - image.style.profile_pic
+  module:
+    - datetime
+    - ds
+    - field_group
+    - image
+    - user
+third_party_settings:
+  field_group:
+    group_details:
+      children:
+        - field_name
+        - field_school
+        - field_birthdate
+      parent_name: ''
+      weight: 1
+      format_type: table
+      format_settings:
+        id: ''
+        classes: ''
+        fieldtitle: 0
+        wrapper: '0'
+        caption: ''
+        required_fields: false
+      label: Details
+      region: hidden
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      ds_content:
+        - user_picture
+        - field_name
+        - group_details
+        - field_school
+        - field_birthdate
+_core:
+  default_config_hash: V51QPCKkgNREKtSmB9Iu2wmAMEpktVpnzklWaZV8UYo
+id: user.user.abbreviated
+targetEntityType: user
+bundle: user
+mode: abbreviated
+content:
+  field_birthdate:
+    weight: 2
+    label: hidden
+    settings:
+      future_format: '@interval hence'
+      past_format: '@interval'
+      granularity: 1
+    third_party_settings: {  }
+    type: datetime_time_ago
+    region: ds_content
+  field_name:
+    type: string
+    weight: 0
+    region: ds_content
+    label: hidden
+    settings:
+      link_to_entity: true
+    third_party_settings: {  }
+  field_school:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: ds_content
+  private_message_link:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  user_picture:
+    type: image
+    weight: 0
+    region: ds_content
+    settings:
+      image_style: profile_pic
+      image_link: content
+    third_party_settings: {  }
+    label: hidden
+hidden:
+  field_about_me: true
+  field_interests: true
+  field_profile_email: true
+  linked_username: true
+  member_for: true
+  realname: true

@@ -1,0 +1,43 @@
+uuid: dee6527c-57e1-4872-9b0b-73bf92e449e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.user.edit_school
+    - field.field.user.user.field_about_me
+    - field.field.user.user.field_birthdate
+    - field.field.user.user.field_interests
+    - field.field.user.user.field_name
+    - field.field.user.user.field_profile_email
+    - field.field.user.user.field_school
+    - field.field.user.user.user_picture
+  module:
+    - user
+_core:
+  default_config_hash: K-1rBM8mTIkFp9RqOC2tMRUukOQ1xbRCfSKK8dEddnA
+id: user.user.edit_school
+targetEntityType: user
+bundle: user
+mode: edit_school
+content:
+  field_school:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  account: true
+  comment_notify_settings: true
+  contact: true
+  field_about_me: true
+  field_birthdate: true
+  field_interests: true
+  field_name: true
+  field_profile_email: true
+  language: true
+  timezone: true
+  user_picture: true

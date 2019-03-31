@@ -1,0 +1,34 @@
+uuid: adc83f50-0061-4ac1-a73a-19a21e45bef9
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.all-roles
+  module:
+    - system
+    - user
+  theme:
+    - slink
+id: allroles
+theme: slink
+region: sidebar_first
+weight: -9
+provider: null
+plugin: 'system_menu_block:all-roles'
+settings:
+  id: 'system_menu_block:all-roles'
+  label: 'All Roles'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      administrator: administrator
+      school_admin: school_admin
+      school_member: school_member
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

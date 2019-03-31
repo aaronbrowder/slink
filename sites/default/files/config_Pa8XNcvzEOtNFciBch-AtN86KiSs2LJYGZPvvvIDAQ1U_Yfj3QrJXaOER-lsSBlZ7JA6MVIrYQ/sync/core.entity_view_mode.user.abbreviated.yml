@@ -1,0 +1,10 @@
+uuid: 0e33be47-295c-43a8-8993-c0e7ab35683f
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.abbreviated
+label: Abbreviated
+targetEntityType: user
+cache: true

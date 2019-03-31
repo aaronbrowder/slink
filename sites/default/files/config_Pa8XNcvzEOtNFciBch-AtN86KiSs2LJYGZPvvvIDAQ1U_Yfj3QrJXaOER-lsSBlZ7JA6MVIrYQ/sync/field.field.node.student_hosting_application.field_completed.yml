@@ -1,0 +1,23 @@
+uuid: 6c8afe8a-ab50-419f-8985-7f4b58bf3e5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_completed
+    - node.type.student_hosting_application
+id: node.student_hosting_application.field_completed
+field_name: field_completed
+entity_type: node
+bundle: student_hosting_application
+label: Completed
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

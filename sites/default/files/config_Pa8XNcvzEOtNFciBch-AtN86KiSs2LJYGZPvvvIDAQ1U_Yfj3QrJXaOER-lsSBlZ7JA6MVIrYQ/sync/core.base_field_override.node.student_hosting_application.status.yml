@@ -1,0 +1,22 @@
+uuid: 90d91273-5e9e-4d20-a96d-bb61c2c8e375
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.student_hosting_application
+id: node.student_hosting_application.status
+field_name: status
+entity_type: node
+bundle: student_hosting_application
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,32 @@
+uuid: e6ed3919-69d1-4b92-8182-96862b95ea93
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.student_hosting_application.field_applicant
+    - field.field.node.student_hosting_application.field_jc_record
+    - field.field.node.student_hosting_application.field_questionnaire
+    - field.field.node.student_hosting_application.field_read
+    - field.field.node.student_hosting_application.field_recipient_school
+    - field.field.node.student_hosting_application.field_recommendation_letter
+    - field.field.node.student_hosting_application.field_sm_approval
+    - node.type.student_hosting_application
+  module:
+    - user
+id: node.student_hosting_application.teaser
+targetEntityType: node
+bundle: student_hosting_application
+mode: teaser
+content: {  }
+hidden:
+  field_applicant: true
+  field_canceled: true
+  field_completed: true
+  field_jc_record: true
+  field_questionnaire: true
+  field_read: true
+  field_recipient_school: true
+  field_recommendation_letter: true
+  field_sm_approval: true
+  links: true

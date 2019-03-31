@@ -1,0 +1,10 @@
+uuid: fe643a42-1f65-47cc-b623-8076c87e2454
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.edit_school
+label: 'Edit School'
+targetEntityType: user
+cache: true

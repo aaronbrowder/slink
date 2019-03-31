@@ -1,0 +1,19 @@
+uuid: a1303af6-7ad8-4879-b06f-ff2abe2a55db
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - student_hosting
+id: node.field_student_guest_program
+field_name: field_student_guest_program
+entity_type: node
+type: student_hosting
+settings: {  }
+module: student_hosting
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,19 @@
+uuid: 2b7fc10f-5edc-4482-9658-5457ff69eb99
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email
+    - node.type.school
+id: node.school.field_email
+field_name: field_email
+entity_type: node
+bundle: school
+label: Email
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

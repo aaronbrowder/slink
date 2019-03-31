@@ -365,3 +365,8 @@ details > .details-wrapper {
 .slink-interests .field {
   padding-top: 12px;
 }
+
+#slink-forum-subscribe-success {
+  color: #3a3;
+  display: none;
+}

@@ -1,0 +1,18 @@
+uuid: 34a1620c-56c4-4fa2-857f-148da0017c5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.student_hosting_application
+id: node.student_hosting_application.created
+field_name: created
+entity_type: node
+bundle: student_hosting_application
+label: 'Authored on'
+description: 'The time that the node was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

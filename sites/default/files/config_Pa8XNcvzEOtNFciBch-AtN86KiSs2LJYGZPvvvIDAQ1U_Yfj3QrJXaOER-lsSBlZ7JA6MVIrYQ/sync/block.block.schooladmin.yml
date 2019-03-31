@@ -1,0 +1,32 @@
+uuid: da4d4ce6-5cfb-402b-98ec-7cbe6435adf1
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.school-admin
+  module:
+    - system
+    - user
+  theme:
+    - slink
+id: schooladmin
+theme: slink
+region: sidebar_first
+weight: -7
+provider: null
+plugin: 'system_menu_block:school-admin'
+settings:
+  id: 'system_menu_block:school-admin'
+  label: 'School Admin'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      school_admin: school_admin
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

@@ -1,0 +1,33 @@
+uuid: 4c8fc879-5dbb-49a9-8a8c-c2d513531b81
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  theme:
+    - slink
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: slink_local_tasks
+theme: slink
+region: content
+weight: -9
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      article: article
+      page: page
+      school: school
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

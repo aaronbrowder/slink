@@ -1,0 +1,22 @@
+uuid: 676349bd-6963-45f1-a80c-d0a141799515
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - slink
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: slink_content
+theme: slink
+region: content
+weight: -5
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

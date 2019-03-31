@@ -1,0 +1,32 @@
+uuid: 7ec1b95d-cc40-4ee6-985e-a6b762454bc5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_student_guest_program
+    - node.type.school
+  module:
+    - student_hosting
+id: node.school.field_student_guest_program
+field_name: field_student_guest_program
+entity_type: node
+bundle: school
+label: 'Student Guest Program'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    enabled: 0
+    cost: '300'
+    currency: USD
+    min_age: '10'
+    min_years_enrolled: '1'
+    expectations: ''
+    require_jc_record: 1
+    require_sm_approval: 1
+    require_recommendation_letter: 0
+    questions: "How old are you?\r\nHow many years have you been enrolled at your school? If less than a year, tell us how many months you've been enrolled.\r\nHow many weeks would you like to stay with us? Or, what are your planned arrival and departure dates?\r\nDo you have any dietary restrictions (for example:\_vegetarian, gluten free)?\r\nDo you have any pet allergies?\r\nIs there anything else you think we should know about you?\r\nWhy are you interested in staying with us?"
+default_value_callback: ''
+settings: {  }
+field_type: student_hosting

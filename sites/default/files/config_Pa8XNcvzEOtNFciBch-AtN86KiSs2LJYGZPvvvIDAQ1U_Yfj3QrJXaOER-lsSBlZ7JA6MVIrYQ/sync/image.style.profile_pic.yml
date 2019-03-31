@@ -1,0 +1,17 @@
+uuid: 9d2eb71b-cad0-4aa6-ae2e-916c2ac836b9
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: profile_pic
+label: 'Profile Pic (120x120)'
+effects:
+  1db90625-cc2e-456c-bd9c-415a26af8f39:
+    uuid: 1db90625-cc2e-456c-bd9c-415a26af8f39
+    id: focal_point_scale_and_crop
+    weight: 2
+    data:
+      width: 120
+      height: 120
+      crop_type: focal_point

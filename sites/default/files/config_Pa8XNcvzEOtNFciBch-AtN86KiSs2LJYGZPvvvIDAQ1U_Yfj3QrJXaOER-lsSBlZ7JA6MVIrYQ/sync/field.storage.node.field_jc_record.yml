@@ -1,0 +1,23 @@
+uuid: 6b58f1dc-3144-4f32-9f2a-bf75efac4048
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: node.field_jc_record
+field_name: field_jc_record
+entity_type: node
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: private
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

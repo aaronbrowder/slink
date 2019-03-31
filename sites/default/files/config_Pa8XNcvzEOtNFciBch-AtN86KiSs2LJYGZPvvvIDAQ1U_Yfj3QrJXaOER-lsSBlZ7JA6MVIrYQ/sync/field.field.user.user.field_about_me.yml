@@ -1,0 +1,20 @@
+uuid: 1a67d754-46c4-47f2-91b9-79f3077d36c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_about_me
+  module:
+    - user
+id: user.user.field_about_me
+field_name: field_about_me
+entity_type: user
+bundle: user
+label: 'About Me'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

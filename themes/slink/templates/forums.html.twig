@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Slink's theme implementation to display a forum.
+ * This has been copied from the core forum module and modified.
+ *
+ * May contain forum containers as well as forum topics.
+ *
+ * Available variables:
+ * - forums: The forums to display (as processed by forum-list.html.twig).
+ * - topics: The topics to display.
+ * - topics_original: Original topics data before modification.
+ * - topics_pager: The topics pager.
+ * - forums_defined: A flag to indicate that the forums are configured.
+ *
+ * @see template_preprocess_forums()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if forums_defined %}
+  {% if not is_container %}
+    <input type="checkbox" id="slink-forum-subscribe" data-forum-id="{{ term.id }}" data-user-id="{{ uid }}"
+      {% if is_subscribed %} checked {% endif %}>
+      Notify me when new topics are posted in this forum
+      <span id="slink-forum-subscribe-success">&nbsp; ✓ Saved</span>
+    <br>
+  {% endif %}
+  {{ forums }}
+  {{ topics }}
+  {{ topics_pager }}
+{% endif %}

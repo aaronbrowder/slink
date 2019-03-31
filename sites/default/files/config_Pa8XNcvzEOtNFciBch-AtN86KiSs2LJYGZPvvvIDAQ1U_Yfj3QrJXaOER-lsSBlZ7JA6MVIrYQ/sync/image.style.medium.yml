@@ -1,0 +1,19 @@
+uuid: 1e46ae73-d0ae-40de-bc42-8875327b301e
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+_core:
+  default_config_hash: Y9NmnZHQq20ASSyTNA6JnwtWrJJiSajOehGDtmUFdM0
+name: medium
+label: 'Medium (220×220)'
+effects:
+  563bce5f-58ee-4047-81a8-d17367a957cf:
+    uuid: 563bce5f-58ee-4047-81a8-d17367a957cf
+    id: focal_point_scale_and_crop
+    weight: 2
+    data:
+      width: 220
+      height: 220
+      crop_type: focal_point

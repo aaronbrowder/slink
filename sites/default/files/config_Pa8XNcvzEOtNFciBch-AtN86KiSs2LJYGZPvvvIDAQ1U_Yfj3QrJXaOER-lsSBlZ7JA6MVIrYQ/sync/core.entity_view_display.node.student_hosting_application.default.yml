@@ -1,0 +1,116 @@
+uuid: 517873c0-974c-4a3e-8f7f-d802ec2459b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.student_hosting_application.field_applicant
+    - field.field.node.student_hosting_application.field_canceled
+    - field.field.node.student_hosting_application.field_completed
+    - field.field.node.student_hosting_application.field_jc_record
+    - field.field.node.student_hosting_application.field_questionnaire
+    - field.field.node.student_hosting_application.field_read
+    - field.field.node.student_hosting_application.field_recipient_school
+    - field.field.node.student_hosting_application.field_recommendation_letter
+    - field.field.node.student_hosting_application.field_sm_approval
+    - node.type.student_hosting_application
+  module:
+    - field_group
+    - file
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_applicant:
+      children:
+        - field_applicant
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: false
+        description: ''
+      label: Applicant
+      region: content
+    group_questionnaire:
+      children:
+        - field_questionnaire
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: false
+        description: ''
+      label: Questionnaire
+      region: content
+    group_documents:
+      children:
+        - field_jc_record
+        - field_sm_approval
+        - field_recommendation_letter
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: false
+      label: Documents
+      region: content
+id: node.student_hosting_application.default
+targetEntityType: node
+bundle: student_hosting_application
+mode: default
+content:
+  field_applicant:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: abbreviated
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_jc_record:
+    weight: 3
+    label: inline
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_questionnaire:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_recommendation_letter:
+    weight: 5
+    label: inline
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_sm_approval:
+    weight: 4
+    label: inline
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+hidden:
+  field_canceled: true
+  field_completed: true
+  field_read: true
+  field_recipient_school: true
+  links: true

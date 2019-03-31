@@ -1,0 +1,8 @@
+uuid: 922aefd2-7cd4-49d0-b4fc-e21bb2742b39
+langcode: en
+status: true
+dependencies: {  }
+id: school-admin
+label: 'School Admin'
+description: ''
+locked: false

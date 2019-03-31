@@ -1,0 +1,28 @@
+uuid: e3556efb-407e-482f-b6b7-98b9dab20bb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_open_campus
+    - node.type.school
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: '0'
+    restricted_html: '0'
+    full_html: '0'
+    plain_text: '0'
+id: node.school.field_open_campus
+field_name: field_open_campus
+entity_type: node
+bundle: school
+label: 'Open Campus'
+description: 'If your school allows students to leave campus, use this space to describe your open campus policy and list some interesting things students can do while off campus.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

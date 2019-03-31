@@ -1,0 +1,36 @@
+uuid: fa1e4d01-f09e-471d-ac33-47ab6ef89b82
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+    - user
+  theme:
+    - slink
+_core:
+  default_config_hash: rx9IrdDv7Ldc4kpalZAxdhIPZfYIeOMh1N-qKoQZwHo
+id: slink_main_menu
+theme: slink
+region: primary_menu
+weight: -7
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      administrator: administrator
+      school_admin: school_admin
+      school_member: school_member
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

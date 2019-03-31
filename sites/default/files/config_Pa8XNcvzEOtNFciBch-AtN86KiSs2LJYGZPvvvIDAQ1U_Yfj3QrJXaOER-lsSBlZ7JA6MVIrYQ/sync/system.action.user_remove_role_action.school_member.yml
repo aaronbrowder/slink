@@ -1,0 +1,14 @@
+uuid: 11448a7d-3ecb-4c7b-b66c-10341dc62c17
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.school_member
+  module:
+    - user
+id: user_remove_role_action.school_member
+label: 'Remove the School Member role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: school_member

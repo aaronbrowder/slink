@@ -1,0 +1,5 @@
+services:
+
+  forum_notification.common:
+    class: Drupal\forum_notification\ForumNotificationService
+    arguments: ['@config.factory', '@current_user', '@plugin.manager.mail', '@link_generator']

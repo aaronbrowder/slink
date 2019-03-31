@@ -1,0 +1,28 @@
+uuid: 379d3537-e93b-4484-902f-8d8da434dfc5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_recipient_school
+    - node.type.school
+    - node.type.student_hosting_application
+id: node.student_hosting_application.field_recipient_school
+field_name: field_recipient_school
+entity_type: node
+bundle: student_hosting_application
+label: 'Recipient School'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      school: school
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

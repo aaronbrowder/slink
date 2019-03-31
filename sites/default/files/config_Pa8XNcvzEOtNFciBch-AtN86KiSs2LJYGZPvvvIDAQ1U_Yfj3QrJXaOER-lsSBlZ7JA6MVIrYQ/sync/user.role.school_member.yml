@@ -1,0 +1,34 @@
+uuid: 78d91be0-ca14-4e19-a4e8-8e97fdb7efb6
+langcode: en
+status: true
+dependencies: {  }
+id: school_member
+label: 'School Member'
+weight: 5
+is_admin: null
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access in-place editing'
+  - 'access user contact forms'
+  - 'access user profiles'
+  - 'cancel account'
+  - 'change own username'
+  - 'create forum content'
+  - 'create terms in tags'
+  - 'delete own article content'
+  - 'delete own page content'
+  - 'delete own school content'
+  - 'edit own article content'
+  - 'edit own comments'
+  - 'edit own page content'
+  - 'edit own school content'
+  - 'post comments'
+  - 'search content'
+  - 'skip comment approval'
+  - 'subscribe to comments'
+  - 'use advanced search'
+  - 'use text format basic_html'
+  - 'use text format full_html'
+  - 'use text format restricted_html'
+  - 'view own unpublished content'

@@ -1,0 +1,22 @@
+uuid: c5ed9a2f-9b55-458b-8a77-8525825c95c2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - slink
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: slink_messages
+theme: slink
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

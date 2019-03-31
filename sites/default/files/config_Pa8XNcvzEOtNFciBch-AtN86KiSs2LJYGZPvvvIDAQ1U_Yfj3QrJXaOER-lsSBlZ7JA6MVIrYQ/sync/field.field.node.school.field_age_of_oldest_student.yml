@@ -1,0 +1,23 @@
+uuid: 704b0351-da5e-4394-900b-3c0885316e69
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_age_of_oldest_student
+    - node.type.school
+id: node.school.field_age_of_oldest_student
+field_name: field_age_of_oldest_student
+entity_type: node
+bundle: school
+label: 'Age of Oldest Student'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 99
+  prefix: ''
+  suffix: ''
+field_type: integer

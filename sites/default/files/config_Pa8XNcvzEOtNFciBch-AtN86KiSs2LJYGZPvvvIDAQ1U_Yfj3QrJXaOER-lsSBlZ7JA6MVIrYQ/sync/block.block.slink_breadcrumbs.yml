@@ -1,0 +1,22 @@
+uuid: 2a75ac9c-9bcc-416f-b66f-fbc9b8b31584
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - slink
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: slink_breadcrumbs
+theme: slink
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

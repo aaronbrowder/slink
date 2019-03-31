@@ -1,0 +1,27 @@
+uuid: 977d4760-83b0-4293-b787-42fc011ea2e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_recommendation_letter
+    - node.type.student_hosting_application
+  module:
+    - file
+id: node.student_hosting_application.field_recommendation_letter
+field_name: field_recommendation_letter
+entity_type: node
+bundle: student_hosting_application
+label: 'Recommendation Letter'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'pdf doc docx rtf odt png jpg jpeg heic'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

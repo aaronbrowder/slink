@@ -75,6 +75,7 @@ class CustomUserAccessControlHandler extends UserAccessControlHandler {
         if (!$current_user->hasRole('school_admin')) return false;
         $current_user_school = $current_user->get('field_school')->entity;
         $entity_school = $entity->get('field_school')->entity;
+        if ($current_user_school == null) return false;
         return $current_user_school->id() == $entity_school->id();
     }
 }

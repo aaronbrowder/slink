@@ -1,0 +1,12 @@
+uuid: bed2d20d-7d57-4b44-98e4-b76048384641
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: PY9HA-hogF4_qq5gZ-TqZDTixx170-APxTcq4rpa014
+id: public_files
+label: 'Public Files Directory'
+type: DrupalFiles
+config:
+  name: 'Public Files Directory'
+  directory: 'public://'

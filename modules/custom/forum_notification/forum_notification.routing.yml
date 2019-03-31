@@ -1,0 +1,7 @@
+forum_notification.config_menu:
+  path: '/admin/content/forum-notification'
+  defaults:
+    _form: '\Drupal\forum_notification\Form\ForumNotification'
+    _title: 'Forum Notification Configuration'
+  requirements:
+   _permission: 'administer content notification config'

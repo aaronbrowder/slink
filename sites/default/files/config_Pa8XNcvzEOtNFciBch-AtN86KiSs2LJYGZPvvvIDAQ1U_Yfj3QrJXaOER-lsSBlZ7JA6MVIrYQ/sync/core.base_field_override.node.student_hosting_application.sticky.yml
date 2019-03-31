@@ -1,0 +1,22 @@
+uuid: 7cabd256-cae6-4e39-8812-9e27cec663c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.student_hosting_application
+id: node.student_hosting_application.sticky
+field_name: sticky
+entity_type: node
+bundle: student_hosting_application
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

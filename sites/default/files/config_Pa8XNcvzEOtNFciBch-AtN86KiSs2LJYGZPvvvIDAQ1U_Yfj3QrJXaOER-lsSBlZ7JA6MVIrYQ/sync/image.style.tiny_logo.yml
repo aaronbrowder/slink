@@ -1,0 +1,17 @@
+uuid: b2196b8c-3108-40ba-bfe4-b711bcbb9d1e
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: tiny_logo
+label: 'Tiny Logo (70x70)'
+effects:
+  8c6ebb71-e89f-41fc-9910-728aa208f4fc:
+    uuid: 8c6ebb71-e89f-41fc-9910-728aa208f4fc
+    id: focal_point_scale_and_crop
+    weight: 2
+    data:
+      width: 70
+      height: 70
+      crop_type: focal_point
